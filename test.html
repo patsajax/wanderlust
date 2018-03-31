@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map Pls Work</title>
+
+    <link rel="stylesheet" href="./css/jqvmap.css">
+</head>
+<body>
+    <div id="vmap" style="width: 600px; height: 400px"></div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./js/jquery.vmap.js"></script>
+    <script src="./js/jquery.vmap.world.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#vmap").vectorMap({ 
+                map: 'world_en',
+                onRegionClick: function(event, code, region) {
+                    selectedCountryCode = code;
+                    $.ajax({
+                        url: "https://restcountries.eu/rest/v2/alpha/" + code,
+                        method: "GET"
+                    }).then(function(response) {
+                        selectedCountryLanguage = response.languages[0].iso639_1;
+                        translatePhrases();
+                    })
+                }
+            });
+        });
+
+        var selectedCountryCode = "";
+        var selectedCountryLanguage = "";
+        var arrayOfPhrases = ["Hello"];
+
+        var translatePhrases = function() {
+            for (var i = 0; i < arrayOfPhrases.length; i++) {
+                $.ajax({
+                    url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
+                    data: {
+                        key: "trnsl.1.1.20180330T194416Z.40eb4150fb68a578.188f9ff63bebe1f224ee9bcc9e9567efed0a287f",
+                        lang: "en-" + selectedCountryLanguage,
+                        text: arrayOfPhrases[i]
+                    },
+                    method: "POST"
+                }).then(function(response) {
+                    console.log(response);
+                })
+            }
+        }
+    </script>
+</body>
+</html>
