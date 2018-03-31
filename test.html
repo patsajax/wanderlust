@@ -20,32 +20,64 @@
             $("#vmap").vectorMap({ 
                 map: 'world_en',
                 onRegionClick: function(event, code, region) {
-                    selectedCountryCode = code;
+                    countryCode = code;
                     $.ajax({
-                        url: "https://restcountries.eu/rest/v2/alpha/" + code,
+                        url: "http://api.geonames.org/countryInfoJSON?",
+                        data: {
+                            username: "carladdg",
+                            country: countryCode
+                        },
                         method: "GET"
                     }).then(function(response) {
-                        selectedCountryLanguage = response.languages[0].iso639_1;
-                        translatePhrases();
+                        var spokenLanguages = response.geonames[0].languages;
+                        countryLanguage = spokenLanguages.slice(0,2);
+                        
+                        var north = response.geonames[0].north;
+                        var south = response.geonames[0].south;
+                        var east = response.geonames[0].east;
+                        var west = response.geonames[0].west;
+                        
+                        findCities(north, south, east, west);
                     })
                 }
             });
         });
 
-        var selectedCountryCode = "";
-        var selectedCountryLanguage = "";
-        var arrayOfPhrases = ["Hello"];
+        var countryCode = "";
+        var countryLanguage = "";
+        var cities = [];
+        var helpfulPhrases = ["Hello"];
+
+        var findCities = function(north, south, east, west) {
+            $.ajax({
+                url: "http://api.geonames.org/citiesJSON?",
+                data: {
+                    username: "carladdg",
+                    north: north,
+                    south: south,
+                    east: east,
+                    west: west,
+                    maxRows: 25
+                },
+                method: "GET"
+            }).then(function(response) {
+                cities = response.geonames.filter(function(city) {
+                    return city.countrycode === countryCode.toUpperCase();
+                }).slice(0,3);
+                console.log(cities);
+            })
+        }
 
         var translatePhrases = function() {
-            for (var i = 0; i < arrayOfPhrases.length; i++) {
+            for (var i = 0; i < helpfulPhrases.length; i++) {
                 $.ajax({
                     url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
                     data: {
                         key: "trnsl.1.1.20180330T194416Z.40eb4150fb68a578.188f9ff63bebe1f224ee9bcc9e9567efed0a287f",
-                        lang: "en-" + selectedCountryLanguage,
-                        text: arrayOfPhrases[i]
+                        lang: "en-" + countryLanguage,
+                        text: helpfulPhrases[i]
                     },
-                    method: "POST"
+                    method: "GET"
                 }).then(function(response) {
                     console.log(response);
                 })
