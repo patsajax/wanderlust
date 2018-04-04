@@ -21,15 +21,60 @@ $(document).ready(function() {
                 var west = response.geonames[0].west.toFixed(2);
                 
                 findCities(north, south, east, west);
+
+
             })
         }
     });
+
+
 });
+
+
+
 
 var countryCode = "";
 var countryLanguage = "";
 var cities = [];
 var helpfulPhrases = ["Hello"];
+
+
+$(document).on("click", "#test-btn", function(test){
+    var lat1 = cities[0].lat;
+    console.log(lat1);
+    var lng1 = cities[0].lng;
+    console.log(lng1);
+    var lat2 = lat1 + 0.002;
+    var lng2 = lng1 + 0.002;
+    var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
+    console.log(coordinates);
+    var cityName = cities[0].name;
+    console.log(cityName)
+
+
+
+    $.ajax({
+        url: "https://api.sygictravelapi.com/1.0/en/places/list?&categories=eating&limit=10&query=" + cityName,
+        headers: {
+            'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
+        },
+        method: "GET"
+    }).then(function(response) {
+        console.log(response)
+
+
+
+    })
+
+
+
+})
+
+
+
+
+
+
 
 function findCities(north, south, east, west) {
     $.ajax({
@@ -57,7 +102,7 @@ function showCities() {
     $("#map-area").hide();
     $("#cities-area").show();
     console.log(countryCode);
-    $("<p>").text(countryCode).appendTo("#cities-area");
+    $("<button>").text(countryCode).appendTo("#cities-area").attr("id","test-btn");
 }
 
 function translatePhrases() {
@@ -75,3 +120,4 @@ function translatePhrases() {
         })
     }
 }
+

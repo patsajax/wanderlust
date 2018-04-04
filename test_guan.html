@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map</title>
+
+    <link href="./js/jquery.vmap.world.js" media="screen" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.vmap.js"></script>
+    <script type="text/javascript" src="./js/jquery.vmap.world.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#vmap').vectorMap({
+
+                map: 'world_en',
+                backgroundColor: '#a5bfdd',
+                borderColor: '#818181',
+                borderOpacity: 0.25,
+                borderWidth: 1,
+                color: '#f4f3f0',
+                enableZoom: true,
+                hoverColor: '#c9dfaf',
+                hoverOpacity: null,
+                normalizeFunction: 'linear',
+                scaleColors: ['#b6d6ff', '#005ace'],
+                selectedColor: '#c9dfaf',
+                selectedRegions: null,
+                showTooltip: true,
+
+                onRegionClick: function (element, code, region) {
+                    console.log(code);
+                    console.log(region);
+
+                    $.ajax({
+                        url: "http://api.geonames.org/countryInfoJSON?",
+                        data: {
+                            username: "heguanelvis",
+                            country: code
+                        },
+                        method: "GET",
+                    }).then(function (response) {
+                        console.log(response);
+                        var north = response.geonames[0].north;
+                        var south = response.geonames[0].south;
+                        var east = response.geonames[0].east;
+                        var west = response.geonames[0].west;
+
+                    });
+
+                }
+
+            });
+
+            var countryCode;
+            var language;
+            var cities = [];
+            var phrases = ["whatever"];
+
+            //Geoname all api:
+            //http://www.geonames.org/export/ws-overview.html
+
+            var findCities = function (north, south, east, west) {
+                $.ajax({
+                    url: "http://api.geonames.org/citiesJSON?",
+                    data: {
+                        username: "heguanelvis",
+                        north: north,
+                        south: south,
+                        east: east,
+                        west: west,
+                        maxRows: 25
+                    },
+                    method: "GET"
+                }).then(function (response) {
+                    cities = response.geonames.filter(function (city) {
+                        return city.countrycode === countryCode.toUpperCase();
+                    }).slice(0, 3);
+                    console.log(cities);
+                })
+            }
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div id="vmap" style="width: 960px; height: 800px;"></div>
+
+
+
+</body>
+
+</html>
