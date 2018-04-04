@@ -8,7 +8,6 @@
 
         <!-- CSS  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-        <link href="./css/theme-style.css" type="text/css" rel="stylesheet" media="screen,projection">
 
         <link rel="stylesheet" href="./css/jqvmap.css">
 
@@ -17,45 +16,64 @@
 
     <body>
         <!-- Header -->
-        <div id="index-banner" class="parallax-container">
-            <div class="section no-pad-bot">
-                <div class="container">
-                    <br><br>
-                    <div class="row center">
-                        <h5 class="header col s12 light">One-stop-shop for information on the next city you want to visit</h5>
-                    </div>
+        <header class="brown white-text">
+            <h1 class="header light center">wanderlust</h1>
+            <h4 class="subheader light center">your one-stop shop for all the information on your next travel destination</h4>
+        </header>
+
+        <main>
+            <!-- Map view -->
+            <div class="center" id="map-view">
+                <p>Which country is calling to you?</p>
+                <div class="center" id="map-area">
+                    <div id="vmap"></div>
                 </div>
             </div>
-            <div class="parallax"><img src="./img/wanderlust1.jpg" alt="Unsplashed background img 1"></div>
-        </div>
-        <br>
 
-        <!-- Map view -->
-        <div class="row center" id="map-area">
-            <div id="vmap"></div>
-        </div>
-
-        <!-- Cities view -->
-        <div id="cities-area"></div>
-
-        <!-- City information view -->
-        <div class="container" id="flight-area">
-            <div class="section">
-                <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
+            <!-- Cities view -->
+            <div id="cities-view">
+                <div class="row">  
+                    <div class="card brown darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Welcome to Россия</span>
+                        </div>
+                        <div class="card-content white-text">
+                            <span class="card-title">Welcome to Russia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m7">
+                    <div class="card-image">
+                        <img src="hhttps://www.britannicacom/topic/lag-of-Russia">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-action">
+                            <button class="btnwaves-effectwaves-light"type="submit"name="action">City</button>
+                            <button class="btnwaves-effectwaves-light"type="submit"name="action">City</button>
+                            <button class="btnwaves-effectwaves-light"type="submit"name="action">City</button>
+                        </div>
+                    </div>          
+                </div>
             </div>
-        </div>
+
+            <!-- City information view -->
+            <div class="container" id="flight-area">
+                <div class="section">
+                    <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
+                </div>
+            </div>
+        </main>
 
         <!-- Footer -->
-        <br>
         <footer class="page-footer brown">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">About us</h5>
+                        <h5 class="white-text">about us</h5>
                         <p class="grey-text text-lighten-4">We are a team of coding boot camp students working on this project like it's our full time job.</p>
                     </div>
                     <div class="col l6 s12">
-                        <h5 class="white-text">Meet the team</h5>
+                        <h5 class="white-text">meet the team</h5>
                         <ul>
                             <li><a class="white-text" href="https://github.com/carladdg" target="_blank">Carla Garcia</a></li>
                             <li><a class="white-text" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a></li>
@@ -67,7 +85,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Made by <a class="brown-text text-lighten-3" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
+                    made by <a class="brown-text text-lighten-3" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
                 </div>
             </div>
         </footer>
@@ -75,7 +93,6 @@
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-        <script src="./js/theme-init.js"></script>
 
         <script src="./js/jquery.vmap.js"></script>
         <script src="./js/jquery.vmap.world.js"></script>
