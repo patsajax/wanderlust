@@ -58,6 +58,7 @@ function showCities() {
     $("#cities-area").show();
     console.log(countryCode);
     $("<p>").text(countryCode).appendTo("#cities-area");
+    console.log(cities);
 }
 
 function translatePhrases() {
