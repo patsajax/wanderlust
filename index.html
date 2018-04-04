@@ -35,10 +35,10 @@
                 <div class="row">  
                     <div class="card brown darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title">Welcome to Россия</span>
+                            <p class="card-title" id="foreign-welcome"></p>
                         </div>
                         <div class="card-content white-text">
-                            <span class="card-title">Welcome to Russia</span>
+                            <p class="card-title">Welcome to <span id="english-welcome"></span></p>
                         </div>
                     </div>
                 </div>
@@ -57,9 +57,11 @@
             </div>
 
             <!-- City information view -->
-            <div class="container" id="flight-area">
-                <div class="section">
-                    <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
+            <div id="information-view">
+                <div class="container" id="flight-area">
+                    <div class="section">
+                        <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
+                    </div>
                 </div>
             </div>
         </main>

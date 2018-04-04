@@ -12,6 +12,9 @@ $(document).ready(function() {
                 },
                 method: "GET"
             }).then(function(response) {
+                countryName = response.geonames[0].countryName;
+                countryCurrency = response.geonames[0].currencyCode;
+
                 var spokenLanguages = response.geonames[0].languages;
                 countryLanguage = spokenLanguages.slice(0,2);
                 
@@ -21,23 +24,18 @@ $(document).ready(function() {
                 var west = response.geonames[0].west.toFixed(2);
                 
                 findCities(north, south, east, west);
-
-
             })
         }
     });
-
-
 });
 
-
-
-
+// Country and city information global variables
 var countryCode = "";
+var countryName = "";
+var countryCurrency = "";
 var countryLanguage = "";
 var cities = [];
-var helpfulPhrases = ["Hello"];
-
+var helpfulPhrases = ["Hello", "Please", "Thank you", "How much does this cost?", "Where is the bathroom?"];
 
 $(document).on("click", "#test-btn", function(test){
     var lat1 = cities[0].lat;
@@ -73,12 +71,6 @@ $(document).on("click", "#test-btn", function(test){
 
 })
 
-
-
-
-
-
-
 function findCities(north, south, east, west) {
     $.ajax({
         url: "http://api.geonames.org/citiesJSON",
@@ -97,15 +89,18 @@ function findCities(north, south, east, west) {
             return city.countrycode === countryCode.toUpperCase();
         }).slice(0,3);
         console.log(cities);
-        showCities();
+        showCitiesView();
     })
 }
 
-function showCities() {
-    $("#map-area").hide();
-    $("#cities-area").show();
-    console.log(countryCode);
+function showCitiesView() {
+    $("#map-view").hide();
+    $("#information-view").hide();
+    $("#cities-view").show();
+
     $("<button>").text(countryCode).appendTo("#cities-area").attr("id","test-btn");
+
+    $("#english-welcome").text(countryName);
 }
 
 function translatePhrases() {
