@@ -1,14 +1,14 @@
-.icon row {
+#cities-area {
     display: none;
 }
 
-.flight {
+#flight-area {
     display: none;
 }
  
 h5 {
     font-size: 60px;
-    font-style: oblique
+    font-style: oblique;
 }
 
 #map-area {

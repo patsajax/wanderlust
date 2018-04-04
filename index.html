@@ -9,7 +9,6 @@
         <!-- CSS  -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
         <link href="./css/theme-style.css" type="text/css" rel="stylesheet" media="screen,projection">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <link rel="stylesheet" href="./css/jqvmap.css">
 
@@ -17,6 +16,7 @@
     </head>
 
     <body>
+        <!-- Header -->
         <div id="index-banner" class="parallax-container">
             <div class="section no-pad-bot">
                 <div class="container">
@@ -29,15 +29,24 @@
             <div class="parallax"><img src="./img/wanderlust1.jpg" alt="Unsplashed background img 1"></div>
         </div>
         <br>
+
+        <!-- Map view -->
         <div class="row center" id="map-area">
             <div id="vmap"></div>
         </div>
-        <br>
-        <!-- <div class="container">
+
+        <!-- Cities view -->
+        <div id="cities-area"></div>
+
+        <!-- City information view -->
+        <div class="container" id="flight-area">
             <div class="section">
-                <div class="flight" data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
+                <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
             </div>
-        </div> -->
+        </div>
+
+        <!-- Footer -->
+        <br>
         <footer class="page-footer brown">
             <div class="container">
                 <div class="row">
@@ -48,10 +57,10 @@
                     <div class="col l6 s12">
                         <h5 class="white-text">Meet the team</h5>
                         <ul>
-                            <li><a class="white-text" href="#!">Carla Garcia</a></li>
-                            <li><a class="white-text" href="#!">Cerise Miller</a></li>
-                            <li><a class="white-text" href="#!">Guan He</a></li>
-                            <li><a class="white-text" href="#!">Jason O'Higgins</a></li>
+                            <li><a class="white-text" href="https://github.com/carladdg" target="_blank">Carla Garcia</a></li>
+                            <li><a class="white-text" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a></li>
+                            <li><a class="white-text" href="https://github.com/heguanelvis" target="_blank">Guan He</a></li>
+                            <li><a class="white-text" href="https://github.com/JasonOHiggins" target="_blank">Jason O'Higgins</a></li>
                         </ul>
                     </div>
                 </div>

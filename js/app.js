@@ -15,10 +15,10 @@ $(document).ready(function() {
                 var spokenLanguages = response.geonames[0].languages;
                 countryLanguage = spokenLanguages.slice(0,2);
                 
-                var north = response.geonames[0].north.toFixed(1);
-                var south = response.geonames[0].south.toFixed(1);
-                var east = response.geonames[0].east.toFixed(1);
-                var west = response.geonames[0].west.toFixed(1);
+                var north = response.geonames[0].north.toFixed(2);
+                var south = response.geonames[0].south.toFixed(2);
+                var east = response.geonames[0].east.toFixed(2);
+                var west = response.geonames[0].west.toFixed(2);
                 
                 findCities(north, south, east, west);
             })
@@ -31,7 +31,7 @@ var countryLanguage = "";
 var cities = [];
 var helpfulPhrases = ["Hello"];
 
-var findCities = function(north, south, east, west) {
+function findCities(north, south, east, west) {
     $.ajax({
         url: "http://api.geonames.org/citiesJSON",
         data: {
@@ -49,10 +49,18 @@ var findCities = function(north, south, east, west) {
             return city.countrycode === countryCode.toUpperCase();
         }).slice(0,3);
         console.log(cities);
+        showCities();
     })
 }
 
-var translatePhrases = function() {
+function showCities() {
+    $("#map-area").hide();
+    $("#cities-area").show();
+    console.log(countryCode);
+    $("<p>").text(countryCode).appendTo("#cities-area");
+}
+
+function translatePhrases() {
     for (var i = 0; i < helpfulPhrases.length; i++) {
         $.ajax({
             url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
