@@ -21,8 +21,9 @@ main {
     font-style: oblique;
 }
 
-#cities-area {
+#cities-view {
     display: none;
+    text-align: center;
 }
 
 #flight-area {
