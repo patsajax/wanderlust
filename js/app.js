@@ -44,17 +44,20 @@ $(document).on("click", "#test-btn", function(test){
     console.log(lat1);
     var lng1 = cities[0].lng;
     console.log(lng1);
-    var lat2 = lat1 + 0.002;
-    var lng2 = lng1 + 0.002;
+    var lat2 = lat1 + 0.02;
+    var lng2 = lng1 + 0.02;
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
     console.log(coordinates);
     var cityName = cities[0].name;
     console.log(cityName)
 
-
+//We can put anything we like in the parameters: &categories = eating/anything to replace poi
 
     $.ajax({
-        url: "https://api.sygictravelapi.com/1.0/en/places/list?&categories=eating&limit=10&query=" + cityName,
+        url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=10",
+        data: {
+            bounds:coordinates
+        },
         headers: {
             'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
         },

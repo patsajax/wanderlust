@@ -26,6 +26,12 @@ main {
     text-align: center;
 }
 
+/* Added as a test for test_guan */
+#cities-area {
+    display: none;
+}
+/* Added as a test for test_guan*/
+
 #flight-area {
     display: none;
 }
