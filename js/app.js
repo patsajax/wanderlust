@@ -87,11 +87,12 @@ function findCities(north, south, east, west) {
     })
     
     // Add Flags to Second Page
-    $("#myImage").attr('src', "http://www.geonames.org/flags/x/" + countryCode + ".gif")
+    $("#my-image").attr('src', "http://www.geonames.org/flags/x/" + countryCode + ".gif")
 }
 
 function showMapView() {
     $("#map-view").show();
+    
     $("#cities-view").hide();
 
     $('#vmap').vectorMap('set', 'colors', {[countryCode]: '#f4f3f0'});
@@ -99,12 +100,18 @@ function showMapView() {
 
 function showCitiesView() {
     $("#cities-view").show();
+    $("#english-welcome").show();
+
     $("#map-view").hide();
     $("#information-view").hide();
 
     $("<button>").text(countryCode).appendTo("#cities-area").attr("id","test-btn");
 
-    $("#english-welcome").text(countryName);
+    if (countryLanguage !== "en") {
+        $("#english-country-name").text(countryName);
+    } else {
+        $("#english-welcome").hide();
+    }
     
     $.ajax({
         url: "https://translate.yandex.net/api/v1.5/tr.json/translate",

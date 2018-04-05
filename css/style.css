@@ -1,7 +1,8 @@
 /* Overwriting theme styling */
 
 p {
-    margin-bottom: 14px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
 }
 
 .card {
@@ -46,6 +47,11 @@ main {
     font-style: oblique;
 }
 
+.map-title {
+    padding: 20px;
+    font-size: 2em;
+}
+
 #cities-view {
     display: none;
     text-align: center;
@@ -68,6 +74,7 @@ h5 {
 
 #map-view {
     height: 100%;
+    background: #a5bfdd;
 }
 
 #vmap {
