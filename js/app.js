@@ -93,14 +93,34 @@ function findCities(north, south, east, west) {
     })
 }
 
+function showMapView() {
+    $("#map-view").show();
+    $("#cities-view").hide();
+
+    $('#vmap').vectorMap('set', 'colors', {[countryCode]: '#f4f3f0'});
+}
+
 function showCitiesView() {
+    $("#cities-view").show();
     $("#map-view").hide();
     $("#information-view").hide();
-    $("#cities-view").show();
 
     $("<button>").text(countryCode).appendTo("#cities-area").attr("id","test-btn");
 
     $("#english-welcome").text(countryName);
+    
+    $.ajax({
+        url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
+        data: {
+            key: "trnsl.1.1.20180330T194416Z.40eb4150fb68a578.188f9ff63bebe1f224ee9bcc9e9567efed0a287f",
+            lang: "en-" + countryLanguage,
+            text: "Welcome to " + countryName
+        },
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        $("#foreign-welcome").text(response.text);
+    })
 }
 
 function translatePhrases() {
@@ -119,3 +139,6 @@ function translatePhrases() {
     }
 }
 
+$("#cities-back-button").on("click", function() {
+    showMapView();
+})

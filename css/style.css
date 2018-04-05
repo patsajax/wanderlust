@@ -1,3 +1,27 @@
+/* Overwriting theme styling */
+
+p {
+    margin-bottom: 14px !important;
+}
+
+.card {
+    margin-top: 14px !important;
+}
+
+.card-content {
+    padding: 20px !important;
+}
+
+.btn-floating {
+    margin-bottom: 14px !important;
+}
+
+.page-footer {
+    margin-top: 14px !important;
+}
+
+/* Our styling */
+
 body {
     display: flex;
     min-height: 100vh;
@@ -6,12 +30,13 @@ body {
 
 header {
     padding: 20px;
+    margin-bottom: 14px;
 }
 
 main {
     flex: 1 0 auto;
 }
-      
+ 
 .header {
     margin-top: 0px;
     font-style: oblique;
