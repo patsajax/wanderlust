@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>wanderlust</title>
+
+    <!-- CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <link rel="stylesheet" href="./css/jqvmap.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="brown white-text">
+        <h1 class="header light center">wanderlust</h1>
+        <h4 class="subheader light center">your one-stop shop for all the information on your next travel destination</h4>
+    </header>
+
+    <main>
+        <!-- Map view -->
+        <div class="center" id="map-view">
+            <p>Which country is calling to you?</p>
+            <div class="center" id="map-area">
+                <div id="vmap"></div>
+            </div>
+        </div>
+
+        <!-- City area -->
+        <div id="cities-area"></div>
+
+
+        <!-- Footer -->
+        <footer class="page-footer brown">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">about us</h5>
+                        <p class="grey-text text-lighten-4">We are a team of coding boot camp students working on this project like it's our full time job.</p>
+                    </div>
+                    <div class="col l6 s12">
+                        <h5 class="white-text">meet the team</h5>
+                        <ul>
+                            <li>
+                                <a class="white-text" href="https://github.com/carladdg" target="_blank">Carla Garcia</a>
+                            </li>
+                            <li>
+                                <a class="white-text" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a>
+                            </li>
+                            <li>
+                                <a class="white-text" href="https://github.com/heguanelvis" target="_blank">Guan He</a>
+                            </li>
+                            <li>
+                                <a class="white-text" href="https://github.com/JasonOHiggins" target="_blank">Jason O'Higgins</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    made by
+                    <a class="brown-text text-lighten-3" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
+                </div>
+            </div>
+        </footer>
+
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+        <script src="./js/jquery.vmap.js"></script>
+        <script src="./js/jquery.vmap.world.js"></script>
+        <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+
+        <script src="./js/app.js"></script>
+</body>
+
+</html>

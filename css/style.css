@@ -1,0 +1,89 @@
+/* Overwriting theme styling */
+
+p {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.card {
+    margin-top: 14px !important;
+}
+
+.card-content {
+    padding: 20px !important;
+}
+
+.btn-floating {
+    margin-bottom: 14px !important;
+}
+
+.page-footer {
+    margin-top: 14px !important;
+}
+
+/* Our styling */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    padding: 20px;
+    margin-bottom: 14px;
+}
+
+main {
+    flex: 1 0 auto;
+}
+ 
+.header {
+    margin-top: 0px;
+    font-style: oblique;
+}
+
+.subheader {
+    font-style: oblique;
+}
+
+.map-title {
+    padding: 20px;
+    font-size: 2em;
+}
+
+#cities-view {
+    display: none;
+    text-align: center;
+}
+
+#flag-area {
+    padding-left: 0px;
+}
+
+#cities-area {
+    padding-right: 0px;
+}
+
+#country-flag {
+    width: 100%;
+}
+
+#flight-area {
+    display: none;
+}
+ 
+h5 {
+    font-size: 60px;
+    font-style: oblique;
+}
+
+#map-view {
+    height: 100%;
+    background: #a5bfdd;
+}
+
+#vmap {
+    width: 100%;
+    height: 500px;
+}
