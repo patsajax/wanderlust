@@ -62,13 +62,7 @@ $(document).on("click", "#test-btn", function(test){
         method: "GET"
     }).then(function(response) {
         console.log(response)
-
-
-
     })
-
-
-
 })
 
 function findCities(north, south, east, west) {
@@ -140,12 +134,8 @@ function translatePhrases() {
             console.log(response);
         })
     }
-<<<<<<< HEAD
-}
-=======
 }
 
 $("#cities-back-button").on("click", function() {
     showMapView();
 })
->>>>>>> 1a6754d7ea1193dce31fb80de0129f25deefb75d
