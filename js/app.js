@@ -91,6 +91,9 @@ function findCities(north, south, east, west) {
         console.log(cities);
         showCitiesView();
     })
+    
+    // Add Flags to Second Page
+    $("#myImage").attr('src', "http://www.geonames.org/flags/x/" + countryCode + ".gif")
 }
 
 function showCitiesView() {
@@ -118,4 +121,3 @@ function translatePhrases() {
         })
     }
 }
-
