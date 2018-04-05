@@ -3,9 +3,10 @@ $(document).ready(function() {
         map: 'world_en',
         enableZoom: false,
         onRegionClick: function(event, code, region) {
+            console.log(region);
             countryCode = code;
             $.ajax({
-                url: "https://api.geonames.org/countryInfoJSON",
+                url: "https://secure.geonames.org/countryInfoJSON",
                 data: {
                     username: "carladdg",
                     country: countryCode
@@ -67,7 +68,7 @@ $(document).on("click", "#test-btn", function(test){
 
 function findCities(north, south, east, west) {
     $.ajax({
-        url: "https://api.geonames.org/citiesJSON",
+        url: "https://secure.geonames.org/citiesJSON",
         data: {
             username: "carladdg",
             north: north,
