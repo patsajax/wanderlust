@@ -85,18 +85,18 @@ function showCitiesView() {
         $("#english-welcome").hide();
     }
     
-    // $.ajax({
-    //     url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
-    //     data: {
-    //         key: "trnsl.1.1.20180330T194416Z.40eb4150fb68a578.188f9ff63bebe1f224ee9bcc9e9567efed0a287f",
-    //         lang: "en-" + countryLanguage,
-    //         text: "Welcome to " + countryName
-    //     },
-    //     method: "GET"
-    // }).then(function(response) {
-    //     console.log(response);
-    //     $("#foreign-welcome").text(response.text);
-    // })
+    $.ajax({
+        url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
+        data: {
+            key: "trnsl.1.1.20180330T194416Z.40eb4150fb68a578.188f9ff63bebe1f224ee9bcc9e9567efed0a287f",
+            lang: "en-" + countryLanguage,
+            text: "Welcome to " + countryName
+        },
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        $("#foreign-welcome").text(response.text);
+    })
 
     for (var i = 0; i < cities.length; i++) {
         $("#city-" + i).text(cities[i].name);
@@ -119,6 +119,9 @@ $(".city").on("click", function(){
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
 
+    $("#selected-city").text(selectedCityName);
+    $("#country-name").text(countryName);
+
     var lat1 = selectedCity.lat;
     var lng1 = selectedCity.lng;
     var lat2 = lat1 + 0.02;
@@ -127,18 +130,18 @@ $(".city").on("click", function(){
 
 //We can put anything we like in the parameters: &categories = eating/anything to replace poi
 
-    // $.ajax({
-    //     url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=3",
-    //     data: {
-    //         bounds:coordinates
-    //     },
-    //     headers: {
-    //         'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
-    //     },
-    //     method: "GET"
-    // }).then(function(response) {
-    //     console.log(response)
-    // })
+    $.ajax({
+        url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=3",
+        data: {
+            bounds:coordinates
+        },
+        headers: {
+            'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
+        },
+        method: "GET"
+    }).then(function(response) {
+        console.log(response)
+    })
 
     $.ajax({
         url: "https://openexchangerates.org/api/latest.json",
@@ -149,12 +152,14 @@ $(".city").on("click", function(){
         method: "GET"
     }).then(function(response) {
         var convertedCurrency = response.rates[countryCurrency].toFixed(2);
-        console.log("1 USD is equal to " + convertedCurrency + " " + countryCurrency);
+        $("#currency-conversion").html("1 USD <i class='material-icons'>compare_arrows</i> " + convertedCurrency + " " + countryCurrency);
     })
+
+    translatePhrases();
 })
 
 function translatePhrases() {
-    for (var i = 0; i < helpfulPhrases.length; i++) {
+    for (let i = 0; i < helpfulPhrases.length; i++) {
         $.ajax({
             url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
             data: {
@@ -164,7 +169,7 @@ function translatePhrases() {
             },
             method: "GET"
         }).then(function(response) {
-            console.log(response);
+            $("#phrase-" + i).text(response.text[0]);
         })
     }
 }
@@ -172,4 +177,3 @@ function translatePhrases() {
 $("#information-back-button").on("click", function() {
     showCitiesView();
 })
-

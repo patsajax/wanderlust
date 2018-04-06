@@ -64,10 +64,10 @@
         </div>
         <!-- City information view -->
         <div id="information-view" class="container">
-            <div class="row">
+            <div class="row center">
                 <div class="card brown darken-1">
                     <div class="card-content white-text">
-                        <p class="card-title" id="selected-city"></p>
+                        <p class="card-title"><span id="selected-city"></span>, <span id="country-name"></span></p>
                     </div>
                 </div>
             </div>
@@ -85,20 +85,21 @@
                 <div class="col s6" id="currency-area">
                     <ul class="collection with-header">
                         <li class="collection-header">Currency</li>    
-                        <li class="collection-item" id="currency-conversion"></li>
+                        <li class="collection-item valign-wrapper" id="currency-conversion"></li>
                     </ul>
-                    <div class="section">
+                    <div class="section collection flight-area">
+                        <div class="collection-header">Let's Go!</div><br>
                         <div data-skyscanner-widget="SearchWidget" data-locale="en-US">Flight Widget</div>
                     </div>
                 </div>
                 <div id="translation-area" class="col s6">
                     <ul class="collection with-header">
                         <li class="collection-header">Helpful Phrases</li>
-                        <li class="collection-item" id="phrase-0"></li>
-                        <li class="collection-item" id="phrase-1"></li>
-                        <li class="collection-item" id="phrase-2"></li>
-                        <li class="collection-item" id="phrase-3"></li>
-                        <li class="collection-item" id="phrase-4"></li>
+                        <li class="collection-item">Hello<br><span id="phrase-0"></span></li>
+                        <li class="collection-item">Please<br><span id="phrase-1"></span></li>
+                        <li class="collection-item">Thank you<br><span id="phrase-2"></span></li>
+                        <li class="collection-item">How much does this cost?<br><span id="phrase-3"></span></li>
+                        <li class="collection-item">Where is the bathroom?<br><span id="phrase-4"></span></li>
                     </ul>
                     <form>
                         <div class="input-field">

@@ -21,8 +21,13 @@ p {
     margin-top: 14px !important;
 }
 
+.collection-item {
+    padding-left: 20px !important;
+}
+
 /* Our styling */
 
+/* General elements */
 body {
     display: flex;
     min-height: 100vh;
@@ -37,6 +42,11 @@ header {
 main {
     flex: 1 0 auto;
 }
+
+h5 {
+    font-size: 60px;
+    font-style: oblique;
+}
  
 .header {
     margin-top: 0px;
@@ -47,11 +57,23 @@ main {
     font-style: oblique;
 }
 
+/* Map view */
+#map-view {
+    height: 100%;
+    background: #a5bfdd;
+}
+
 .map-title {
     padding: 20px;
     font-size: 2em;
 }
 
+#vmap {
+    width: 100%;
+    height: 500px;
+}
+
+/* Cities view */
 #cities-view {
     display: none;
     text-align: center;
@@ -73,21 +95,16 @@ main {
     cursor: pointer;
 }
 
+/* Information view */
 #information-view {
     display: none;
 }
- 
-h5 {
-    font-size: 60px;
-    font-style: oblique;
+
+#currency-area {
+    text-align: center !important;
 }
 
-#map-view {
-    height: 100%;
-    background: #a5bfdd;
-}
-
-#vmap {
-    width: 100%;
-    height: 500px;
+.flight-area {
+    padding-left: 20px;
+    padding-right: 20px;
 }
