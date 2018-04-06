@@ -60,25 +60,18 @@
                     </div>
                 </div>
             </div>
-            <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light cyan left">
+            <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light brown left">
                 <i class="material-icons">arrow_back</i>
             </a>
         </div>
 
 
-        <br><br>
+        <br>
+        <br>
 
-        
+
         <!-- City information view -->
-        <div class="row valign-wrapper">
-            <!-- <div class="row">
-                <div class="col s12">This div is 12-columns wide on all screen sizes</div>
-                <div class="col s6">6-columns (one-half)
-                    <div class="row">row1</div>
-                    <div class="row">row2</div>
-                </div>
-                <div class="col s6">other row</div>
-            </div> -->
+        <div class="row" id="information-view">
             <div id="attractions-view" class="col s12">
                 <div class="card-stacked">
                     <p class="card-title">Attractions</p>
@@ -90,32 +83,33 @@
                 </div>
             </div>
             <div class="col s6">
-            <div id="attractions-view" class="row">
-                <div class="card-stacked">Currency</p>
-                    <div class="collection">
-                        <a class="collection-item" id="city-0"></a>
-                        <a class="collection-item" id="city-1"></a>
-                        <a class="collection-item" id="city-2"></a>
+                <div id="currency-view" class="row">
+                    <div class="card-stacked">Currency</p>
+                        <div class="collection"></div>
+                    </div>
+                </div>
+                <div class="row" id="flight-area">
+                    <div class="section">
+                        <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="flight-area">
-                <div class="section">
-                    <div data-skyscanner-widget="SearchWidget" data-locale="en-US">Flight Widget</div>
-                </div>
-            </div>
-        </div>
-            <div id="attractions-view" class="col s6">
+            <div id="phrases-view" class="col s6">
                 <div class="card-stacked">
                     <p class="card-title">Helpful Phrases</p>
                     <div class="collection">
-                        <a class="collection-item" id="city-0"></a>
-                        <a class="collection-item" id="city-1"></a>
-                        <a class="collection-item" id="city-2"></a>
+                        <a class="collection-item" id="phrase-0"></a>
+                        <a class="collection-item" id="phrase-1"></a>
+                        <a class="collection-item" id="phrase-2"></a>
+                        <a class="collection-item" id="phrase-3"></a>
+                        <a class="collection-item" id="phrase-4"></a>
                     </div>
                 </div>
             </div>
         </div>
+            <a id="information-back-button" class="btn-floating btn-large waves-effect waves-light brown left">
+                <i class="material-icons">arrow_back</i>
+            </a>
         </div>
     </main>
 
