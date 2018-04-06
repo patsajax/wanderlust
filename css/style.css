@@ -61,12 +61,16 @@ main {
     padding-left: 0px;
 }
 
+#country-flag {
+    width: 100%;
+}
+
 #cities-area {
     padding-right: 0px;
 }
 
-#country-flag {
-    width: 100%;
+.city {
+    cursor: pointer;
 }
 
 #information-view {

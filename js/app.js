@@ -107,6 +107,12 @@ $("#cities-back-button").on("click", function() {
     showMapView();
 })
 
+function showInformationView() {
+    $("#information-view").show();
+
+    $("#cities-view").hide();
+}
+
 $(".city").on("click", function(){
     showInformationView();
 
@@ -163,8 +169,7 @@ function translatePhrases() {
     }
 }
 
-function showInformationView() {
-    $("#information-view").show();
+$("#information-back-button").on("click", function() {
+    showCitiesView();
+})
 
-    $("#cities-view").hide();
-}
