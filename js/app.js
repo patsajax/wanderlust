@@ -107,8 +107,10 @@ $("#cities-back-button").on("click", function() {
     showMapView();
 })
 
-$(document).on("click", ".city", function(){
-    selectedCity = cities[$(this).attr("data-number")];
+$(".city").on("click", function(){
+    showInformationView();
+
+    selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
 
     var lat1 = selectedCity.lat;
@@ -164,5 +166,5 @@ function translatePhrases() {
 function showInformationView() {
     $("#information-view").show();
 
-    $("cities-view").hide();
+    $("#cities-view").hide();
 }
