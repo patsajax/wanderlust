@@ -38,6 +38,7 @@ var countryLanguage = "";
 var cities = [];
 var helpfulPhrases = ["Hello", "Please", "Thank you", "How much does this cost?", "Where is the bathroom?"];
 var selectedCity = "";
+var attractionInfo = ""
 
 function showMapView() {
     $("#map-view").show();
@@ -115,7 +116,7 @@ function showInformationView() {
 
 $(".city").on("click", function(){
     showInformationView();
-
+    
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
 
@@ -127,18 +128,21 @@ $(".city").on("click", function(){
 
 //We can put anything we like in the parameters: &categories = eating/anything to replace poi
 
-    // $.ajax({
-    //     url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=3",
-    //     data: {
-    //         bounds:coordinates
-    //     },
-    //     headers: {
-    //         'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
-    //     },
-    //     method: "GET"
-    // }).then(function(response) {
-    //     console.log(response)
-    // })
+    $.ajax({
+        url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=3",
+        data: {
+            bounds:coordinates
+        },
+        headers: {
+            'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
+        },
+        method: "GET"
+    }).then(function(response) {
+        console.log(response)
+        attractionInfo = response.data.places
+        addAttraction()
+    })
+
 
     $.ajax({
         url: "https://openexchangerates.org/api/latest.json",
@@ -173,3 +177,23 @@ $("#information-back-button").on("click", function() {
     showCitiesView();
 })
 
+function addAttraction(){
+
+    for (var i = 0;  i < 3; i++) {
+        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s12");
+        $("#attraction-"+i).append(attractionName);
+    }
+
+    for (var i = 0; i < 3; i++) {
+        attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
+        $("#attraction-"+i).append(attractionImage);
+    }
+
+    for (var i = 0; i < 3; i++) {
+        attractionDescription = $("<div>").text(attractionInfo[i].perex).addClass("col s9");
+        $("#attraction-"+i).append(attractionDescription);
+    }
+
+
+
+}
