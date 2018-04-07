@@ -17,13 +17,22 @@
     <!-- Firebase reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" href="https://trell.co/assets/images/branding/favicon-green.png" type="image/x-icon">    
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Diplomata+SC|Kaushan+Script|Knewave|Merienda+One|Open+Sans|Rock+Salt" rel="stylesheet">
+  
+    <!-- Font Awesome Icon Link -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <!-- Header -->
-    <header class="brown white-text">
-        <h1 class="header light center">wanderlust</h1>
-        <h4 class="subheader light center">your one-stop shop for all the information on your next travel destination</h4>
+    <header class="white-text">
+        <h1 class="header light center"><i class="fas fa-globe fa-spin"></i>  Wanderlust</h1>
+        <h4 class="subheader light center">Your one-stop shop for all the information on your next travel destination!</h4>
     </header>
 
     <main>
@@ -38,12 +47,12 @@
         <!-- Cities view -->
         <div id="cities-view" class="container">
             <div class="row">
-                <div class="card brown darken-1">
-                    <div class="card-content white-text" id="foreign-welcome">
-                        <p class="card-title" id="foreign-country-name"></p>
+                <div class="card">
+                    <div class="card-content white-text purple-style">
+                        <p class="card-title" id="foreign-welcome"></p>
                     </div>
-                    <div class="card-content white-text">
-                        <p class="card-title">Welcome to
+                    <div class="card-content white-text purple-style" id="english-welcome">
+                        <p class="card-title darken-1 rock-salt">Welcome to
                             <span id="english-country-name"></span>
                         </p>
                     </div>
@@ -54,22 +63,23 @@
                     <img id="country-flag">
                 </div> 
                 <div id="cities-area" class="col s5">
-                    <ul class="collection with-header">   
-                        <li class="collection-header">Recommended Cities</li>
-                        <a class="collection-item city" id="city-0" data-city="0"></a>
-                        <a class="collection-item city" id="city-1" data-city="1"></a>
-                        <a class="collection-item city" id="city-2" data-city="2"></a>
+                    <ul class="collection with-header white-text">   
+                        <li class="collection-header purple-style kaushan-script">Recommended Cities</li>
+                        <a class="collection-item city purple-text merienda-one" id="city-0" data-city="0"></a>
+                        <a class="collection-item city purple-text merienda-one" id="city-1" data-city="1"></a>
+                        <a class="collection-item city purple-text merienda-one" id="city-2" data-city="2"></a>
                     </ul>
                 </div>
             </div>
-            <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light brown left">
+            <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
                 <i class="material-icons">arrow_back</i>
             </a>
         </div>
+
         <!-- City information view -->
         <div id="information-view" class="container">
             <div class="row center">
-                <div class="card brown darken-1">
+                <div class="card darken-1 gold-style">
                     <div class="card-content white-text">
                         <p class="card-title"><span id="selected-city"></span>, <span id="country-name"></span></p>
                     </div>
@@ -113,23 +123,23 @@
                     </form>
                 </div>
             </div>
-            <a id="information-back-button" class="btn-floating btn-large waves-effect waves-light brown left">
+            <a id="information-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
                 <i class="material-icons">arrow_back</i>
             </a>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="page-footer brown">
+    <footer class="page-footer">
         <div class="container">
             <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="white-text">about us</h5>
-                    <p class="grey-text text-lighten-4">we are a team of coding boot camp students working on this project like it's our full time job.</p>
+                <div class="col l6 s12 push-l1">
+                    <h5 class="white-text contact-title-text">about us</h5>
+                    <p class="grey-text text-lighten-4 contact-sub-text">we are a team of coding boot camp students working on this project like it's our full time job.</p>
                 </div>
-                <div class="col l6 s12">
-                    <h5 class="white-text">meet the team</h5>
-                    <ul>
+                <div class="col l6 s12 push-l1">
+                    <h5 class="white-text contact-title-text">meet the team</h5>
+                    <ul class="contact-sub-text">
                         <li>
                             <a class="white-text" href="https://github.com/carladdg" target="_blank">carla garcia</a>
                         </li>
@@ -147,9 +157,9 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <div class="container">
+            <div class="container center-align">
                 made by
-                <a class="brown-text text-lighten-3" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
+                <a class="brown-text text-lighten-3 center-align" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
             </div>
         </div>
     </footer>

@@ -1,4 +1,12 @@
 /* Overwriting theme styling */
+/* Google fonts:
+font-family: 'Kaushan Script', cursive;
+font-family: 'Merienda One', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Knewave', cursive;
+font-family: 'Diplomata SC', cursive;
+font-family: 'Open Sans', sans-serif;
+*/
 
 p {
     margin-top: 0px !important;
@@ -18,7 +26,8 @@ p {
 }
 
 .page-footer {
-    margin-top: 14px !important;
+    background-image: url("./../img/purple cloud - Copy.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
 }
 
 .collection-item {
@@ -36,11 +45,13 @@ body {
 
 header {
     padding: 20px;
-    margin-bottom: 14px;
+    background-image: url("./../img/purple cloud - Copy.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
 }
 
 main {
     flex: 1 0 auto;
+    background-color: #cdcdc0;
 }
 
 h5 {
@@ -51,21 +62,25 @@ h5 {
 .header {
     margin-top: 0px;
     font-style: oblique;
+    font-family: 'Rock Salt', cursive;
 }
 
 .subheader {
-    font-style: oblique;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 200%;
 }
 
 /* Map view */
 #map-view {
     height: 100%;
-    background: #a5bfdd;
+    background-image: url("./../img/purple cloud.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
 }
 
 .map-title {
     padding: 20px;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-family: 'Merienda One', cursive;
 }
 
 #vmap {
@@ -107,4 +122,50 @@ h5 {
 .flight-area {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.contact-title-text{
+    font-family: 'Rock Salt', cursive;
+    font-size:2.5em;
+}
+
+.contact-sub-text{
+    font-family: 'Merienda One', cursive;
+    font-size:1.3em;
+}
+
+.btn-style{
+    background-image:url("./../img/purple cloud.jpg")
+}
+
+.gold-style{
+    background-image:url("./../img/purple cloud - Copy.jpg")
+}
+
+.purple-style{
+    background-image:url("./../img/purple cloud.jpg")
+}
+
+.rock-salt{
+    font-family: 'Rock Salt', cursive !important;
+    font-style: oblique !important;
+    font-size: 2em !important;
+}
+
+.kaushan-script{
+    font-family: 'Kaushan Script', cursive !important;
+    font-size:2em !important;
+}
+
+.merienda-one{
+    font-family: 'Merienda One', cursive !important;
+    font-size:1.5em !important;
+}
+
+.gold-text{
+    color:#bda24b !important;
+}
+
+.purple-text{
+    color:rgb(136, 82, 136) !important;
 }
