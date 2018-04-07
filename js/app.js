@@ -1,8 +1,61 @@
-$(document).ready(function() {
-    $("#vmap").vectorMap({ 
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
+    authDomain: "wanderlust-52fce.firebaseapp.com",
+    databaseURL: "https://wanderlust-52fce.firebaseio.com",
+    projectId: "wanderlust-52fce",
+    storageBucket: "wanderlust-52fce.appspot.com",
+    messagingSenderId: "77813582408"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
+
+//initial values
+var country = "";
+var city = "";
+
+//country click capture
+$("#vmap").on("click", function (event) {
+    event.preventDefault();
+
+
+// Grab value from 
+country = $("#vmap").val().trim();
+city = $("#cities-area").val().trim();
+
+
+// Code for handling the push
+database.ref().push({
+    country: country,
+    city: city,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+
+});
+
+// Firebase watcher + initial loader + order/limit HINT: .on("child_added"
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+
+// storing the snapshot.val() in a variable for convenience
+var sv = snapshot.val();
+
+//console log input
+console.log(sv.country);
+console.log(sv.city);
+
+//handle errors
+}, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+
+
+$(document).ready(function () {
+    $("#vmap").vectorMap({
         map: 'world_en',
         enableZoom: false,
-        onRegionClick: function(event, code, region) {
+        onRegionClick: function (event, code, region) {
             console.log(region);
             countryCode = code;
             $.ajax({
@@ -12,18 +65,18 @@ $(document).ready(function() {
                     country: countryCode
                 },
                 method: "GET"
-            }).then(function(response) {
+            }).then(function (response) {
                 countryName = response.geonames[0].countryName;
                 countryCurrency = response.geonames[0].currencyCode;
 
                 var spokenLanguages = response.geonames[0].languages;
-                countryLanguage = spokenLanguages.slice(0,2);
-                
+                countryLanguage = spokenLanguages.slice(0, 2);
+
                 var north = response.geonames[0].north.toFixed(1);
                 var south = response.geonames[0].south.toFixed(1);
                 var east = response.geonames[0].east.toFixed(1);
                 var west = response.geonames[0].west.toFixed(1);
-                
+
                 findCities(north, south, east, west);
             })
         }
@@ -45,7 +98,7 @@ function showMapView() {
 
     $("#cities-view").hide();
 
-    $('#vmap').vectorMap('set', 'colors', {[countryCode]: '#f4f3f0'});
+    $('#vmap').vectorMap('set', 'colors', { [countryCode]: '#f4f3f0' });
 }
 
 function findCities(north, south, east, west) {
@@ -60,15 +113,15 @@ function findCities(north, south, east, west) {
             maxRows: 25
         },
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
-        cities = response.geonames.filter(function(city) {
+        cities = response.geonames.filter(function (city) {
             return city.countrycode === countryCode.toUpperCase();
-        }).slice(0,3);
+        }).slice(0, 3);
         console.log(cities);
         showCitiesView();
     })
-    
+
     // Add Flags to Second Page
     $("#country-flag").attr('src', "https://flagpedia.net/data/flags/normal/" + countryCode + ".png");
 }
@@ -85,7 +138,7 @@ function showCitiesView() {
     } else {
         $("#english-welcome").hide();
     }
-    
+
     $.ajax({
         url: "https://translate.yandex.net/api/v1.5/tr.json/translate",
         data: {
@@ -94,7 +147,7 @@ function showCitiesView() {
             text: "Welcome to " + countryName
         },
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response);
         $("#foreign-welcome").text(response.text);
     })
@@ -104,7 +157,7 @@ function showCitiesView() {
     }
 }
 
-$("#cities-back-button").on("click", function() {
+$("#cities-back-button").on("click", function () {
     showMapView();
 })
 
@@ -114,9 +167,9 @@ function showInformationView() {
     $("#cities-view").hide();
 }
 
-$(".city").on("click", function(){
+$(".city").on("click", function () {
     showInformationView();
-    
+
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
 
@@ -129,18 +182,18 @@ $(".city").on("click", function(){
     var lng2 = lng1 + 0.02;
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
 
-//We can put anything we like in the parameters: &categories = eating/anything to replace poi
+    //We can put anything we like in the parameters: &categories = eating/anything to replace poi
 
     $.ajax({
         url: "https://api.sygictravelapi.com/1.0/en/places/list?&levels=poi&limit=3",
         data: {
-            bounds:coordinates
+            bounds: coordinates
         },
         headers: {
             'x-api-key': "1L2UnOUBpyaJMeyqcmHWs1oQU8ha9kgH5aG7ZYcr"
         },
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         console.log(response)
         attractionInfo = response.data.places
         addAttraction()
@@ -153,7 +206,7 @@ $(".city").on("click", function(){
             base: "USD"
         },
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         var convertedCurrency = response.rates[countryCurrency].toFixed(2);
         $("#currency-conversion").html("1 USD <i class='material-icons'>compare_arrows</i> " + convertedCurrency + " " + countryCurrency);
     })
@@ -171,31 +224,31 @@ function translatePhrases() {
                 text: helpfulPhrases[i]
             },
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             $("#phrase-" + i).text(response.text[0]);
         })
     }
 }
 
-$("#information-back-button").on("click", function() {
+$("#information-back-button").on("click", function () {
     showCitiesView();
 })
 
-function addAttraction(){
+function addAttraction() {
 
-    for (var i = 0;  i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s12");
-        $("#attraction-"+i).append(attractionName);
+        $("#attraction-" + i).append(attractionName);
     }
 
     for (var i = 0; i < 3; i++) {
         attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
-        $("#attraction-"+i).append(attractionImage);
+        $("#attraction-" + i).append(attractionImage);
     }
 
     for (var i = 0; i < 3; i++) {
         attractionDescription = $("<div>").text(attractionInfo[i].perex).addClass("col s9");
-        $("#attraction-"+i).append(attractionDescription);
+        $("#attraction-" + i).append(attractionDescription);
     }
 
 
