@@ -143,6 +143,23 @@ $(".city").on("click", function () {
 
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
+
+    $("#selected-city").text(selectedCityName);
+    $("#country-name").text(countryName);
+    console.log(selectedCityName);
+  
+   // var flightWidget = $("<div>").attr("data-skyscanner-widget", "SearchWidget").attr("data-locale", "en-US").attr("data-origin-geo-lookup", "true").attr("data-destination-name", "'" + selectedCityName + "'");
+   // var skyscannerJs = $("<script>").attr("src", "https://widgets.skyscanner.net/widget-server/js/loader.js async");
+   // $("#flight-widget").append(flightWidget);
+   // $("#skyscannerJs").append(skyscannerJs);
+
+   // $("#flight-widget").attr(data-skyscanner-widget, "SearchWidget").attr(data-locale, "en-US").attr(data-origin-geo-lookup, "true").attr(data-destination-name, "'" + selectedCityName + "'"); 
+   
+  
+  var destinationDiv = $("div").find("[data-element='destination-field']");
+  destinationDiv.attr("id", "toDestination");
+  $("#toDestination :input").val(selectedCityName);
+
     var lat1 = selectedCity.lat;
     var lng1 = selectedCity.lng;
     var lat2 = lat1 + 0.02;
