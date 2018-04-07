@@ -204,7 +204,7 @@ function generateCityInfo(selectedCity) {
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
 
     displayCityGreeting(selectedCityName);
-    // findAttractions(coordinates);
+    findAttractions(coordinates);
     convertCurrency();
     populateFlightDestination(selectedCityName);
     translatePhrases();
@@ -254,13 +254,22 @@ function displayAttractions(){
         $("#attraction-"+i).append(attractionImage);
     }
     for (var i = 0;  i < 3; i++) {
-        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s9");
+        attractionName = $("<div>").html(attractionInfo[i].name + "<br>" + "<br>").addClass("col s9 gold-text center-align merienda-one");
         $("#attraction-"+i).append(attractionName);
     }
     for (var i = 0; i < 3; i++) {
-        attractionDescription = $("<div>").text(attractionInfo[i].perex).addClass("col s9");
+        attractionMarker = $("<div>").html(attractionInfo[i].marker + "<br>" + "<br>").addClass("col s9 knewave purple-text");
+        $("#attraction-"+i).append(attractionMarker);
+    }
+    for (var i = 0; i < 3; i++) {
+        attractionDescription = $("<div>").html(attractionInfo[i].perex + "<br>" + "<br>").addClass("col s9 opensans");
         $("#attraction-"+i).append(attractionDescription);
     }
+    for (var i = 0; i < 3; i++) {
+        attractionMapLink = $("<a>").attr("href", attractionInfo[i].url).attr("target", "_blank").addClass("col s9 opensans").text("Click Here to Check Its Location!");
+        $("#attraction-"+i).append(attractionMapLink);
+    }
+
 }
 
 function convertCurrency() {
