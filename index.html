@@ -79,7 +79,7 @@
         <!-- City information view -->
         <div id="information-view" class="container">
             <div class="row center">
-                <div class="card darken-1 gold-style">
+                <div class="card darken-1 purple-style rock-salt">
                     <div class="card-content white-text">
                         <p class="card-title"><span id="selected-city"></span>, <span id="country-name"></span></p>
                     </div>
@@ -88,7 +88,7 @@
             <div class="row">
                 <div id="attractions-area" class="col s12">
                     <ul class="collection with-header">
-                        <li class="collection-header">Top Attractions</li>
+                        <li class="collection-header purple-style center-align kaushan-script white-text">Top Attractions</li>
                         <li class="collection-item row" id="attraction-0"></li>
                         <li class="collection-item row" id="attraction-1"></li>
                         <li class="collection-item row" id="attraction-2"></li>
@@ -96,31 +96,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s6" id="currency-area">
-                    <ul class="collection with-header">
-                        <li class="collection-header">Currency</li>    
-                        <li class="collection-item center-align" id="currency-conversion"></li>
-                    </ul>
-                    <div class="section collection flight-area">
-                        <div class="collection-header">Let's Go!</div><br>
-                        <div id="flight-widget" data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-locale="en-US">Flight Widget</div>                    </div>
-                </div>
+                    <div class="col s6" id="currency-area">
+                            <ul class="collection with-header">
+                                <li class="collection-header center-align kaushan-script purple-style white-text">Currency</li>    
+                                <li class="collection-item center-align" id="currency-conversion"></li>
+                            </ul>
+                            <div class="section collection flight-area">
+                                <div class="collection-header center-align kaushan-script purple-text">Let's Go!</div><br>
+                                <div id="flight-widget" data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-locale="en-US">Flight Widget</div>                    </div>
+                        </div>
+
                 <div id="translation-area" class="col s6">
                     <ul class="collection with-header" id="translated-items">
-                        <li class="collection-header">Helpful Phrases</li>
+                        <li class="collection-header purple-style center-align kaushan-script white-text">Helpful Phrases</li>
                         <li class="collection-item">Hello<br><span id="phrase-0"></span></li>
                         <li class="collection-item">Please<br><span id="phrase-1"></span></li>
                         <li class="collection-item">Thank you<br><span id="phrase-2"></span></li>
                         <li class="collection-item">How much does this cost?<br><span id="phrase-3"></span></li>
                         <li class="collection-item">Where is the bathroom?<br><span id="phrase-4"></span></li>
+                        <li class="collection-item">
+                          <form id="user-translation-area">
+                            <div class="input-field">
+                                <input type="text" id="user-phrase" placeholder="What else do you want to say?">
+                                <label for="user-phrase">Characters Remaining: <span id="characters-remaining">50</span></label>
+                                <input type="submit" value="Submit" id="translate-button">
+                            </div>
+                          </form>
+                       </li>
                     </ul>
-                    <form id="user-translation-area">
-                        <div class="input-field">
-                            <input type="text" id="user-phrase" placeholder="What else do you want to say?">
-                            <label for="user-phrase">Characters Remaining: <span id="characters-remaining">50</span></label>
-                            <input type="submit" value="Submit" id="translate-button">
-                        </div>
-                    </form>
                 </div>
             </div>
             <a id="information-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
