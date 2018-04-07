@@ -7,7 +7,9 @@ var config = {
     messagingSenderId: "403541142142"
   };
 firebase.initializeApp(config);
-var database = firebase.database();
+
+var recents = firebase.database().ref("recents/");
+var recentCities = [];
 
 var countryCode = "";
 var countryName = "";
@@ -54,19 +56,30 @@ $(document).ready(function() {
     });
 });
 
-database.ref().on("value", function(snapshot) {
-    if (snapshot.numChildren() > 0) {
-        $("#recent-destinations").show();
+recents.on("value", function(snapshot) {
+    $("#recent-destinations").empty();
+    recentCities = snapshot.val();
 
-        for (var i = 0; i < 3; i++) {
-            snapshot.forEach(function(childSnapshot) {
-                console.log(childSnapshot.key);
-                i++;
-            })
-        }  
-    } else {
-        $("#recent-destinations").hide();
+    for (var i = 0; i < recentCities.length; i++) {
+        $("<a>")
+            .addClass("waves-effect waves-light btn recent-city")
+            .text(recentCities[i].city.name)
+            .attr('data-index', i)
+            .appendTo("#recent-destinations");
     }
+})
+
+$(document).on("click", ".recent-city", function() {
+    selectedCity = recentCities[$(this).attr('data-index')].city;
+    countryName = recentCities[$(this).attr('data-index')].country;
+    countryCurrency = recentCities[$(this).attr('data-index')].currency;
+    countryLanguage = recentCities[$(this).attr('data-index')].language;
+
+    generateCityInfo(selectedCity);
+    showInformationView();  
+    
+    $("#information-back-button").hide();
+    $("#recent-city-back-button").show();
 })
 
 function findCities(north, south, east, west) {
@@ -140,38 +153,46 @@ function showMapView() {
     $("#map-view").show();
 
     $("#cities-view").hide();
+    $("#information-view").hide();
 
     $('#vmap').vectorMap('set', 'colors', {[countryCode]: '#f4f3f0'});
 }
 
-function showInformationView() {
-    $("#information-view").show();
-
-    $("#cities-view").hide();
-
-    if (countryLanguage === "en") {
-        $("#user-translation-area").hide()
-    } else {
-        $("#user-translation-area").show()
-    }
-}
-
 $(".city").on("click", function () {
+    selectedCity = cities[$(this).attr("data-city")];
+
+    generateCityInfo(selectedCity);
     showInformationView();
 
-    selectedCity = cities[$(this).attr("data-city")];
-    var selectedCityName = selectedCity.name;
+    $("#information-back-button").show();
+    $("#recent-city-back-button").hide();
 
-    database.ref().child(selectedCityName).set({
-        countryName: countryName,
-        countryLanguage: countryLanguage,
-        city: selectedCity
-    })
+    var selectedCityInfo = {
+        city: selectedCity,
+        country: countryName,
+        language: countryLanguage,
+        currency: countryCurrency
+    }
+
+    let alreadyRecent = false;
+    recentCities.forEach(e => {
+        if(e.city.name == selectedCity.name)
+            alreadyRecent = true;
+    });
+    
+    if (!alreadyRecent) {
+        recentCities.push(selectedCityInfo);
+        recentCities.shift();
+        recents.set(recentCities);
+    }
+})
+
+function generateCityInfo(selectedCity) {
+    var selectedCityName = selectedCity.name;
 
     $("#selected-city").text(selectedCityName);
     $("#country-name").text(countryName);
-    console.log(selectedCityName);
-  
+
     var destinationDiv = $("div").find("[data-element='destination-field']");
     destinationDiv.attr("id", "toDestination");
     $("#toDestination :input").val(selectedCityName);
@@ -187,7 +208,20 @@ $(".city").on("click", function () {
     convertCurrency();
     populateFlightDestination(selectedCityName);
     translatePhrases();
-})
+}
+
+function showInformationView() {
+    $("#information-view").show();
+
+    $("#map-view").hide();
+    $("#cities-view").hide();
+
+    if (countryLanguage === "en") {
+        $("#user-translation-area").hide()
+    } else {
+        $("#user-translation-area").show()
+    }
+}
 
 function displayCityGreeting(selectedCityName) {
     $("#selected-city").text(selectedCityName);
@@ -214,8 +248,6 @@ function displayAttractions(){
     $("#attraction-0").empty();
     $("#attraction-1").empty();
     $("#attraction-2").empty();
-
-
 
     for (var i = 0; i < 3; i++) {
         attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
@@ -265,6 +297,10 @@ function translatePhrases() {
             }).then(function(response) {
                 $("#phrase-" + i).text(response.text[0]);
             })
+        }
+    } else {
+        for (var i = 0; i < helpfulPhrases.length; i++) {
+            $("#phrase-" + i).empty();
         }
     }
 }
@@ -343,4 +379,8 @@ function translateUserPhrase(userPhrase) {
 
 $("#information-back-button").on("click", function () {
     showCitiesView();
+})
+
+$("#recent-city-back-button").on("click", function () {
+    showMapView();
 })
