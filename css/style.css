@@ -174,3 +174,29 @@ h5 {
 .flight-area{
     background: white;
 }
+
+#recent-city-back-button {
+    display: none;
+}
+
+.recent-city {
+    margin-left:10px;
+    margin-right:10px;
+    background:white;
+    border-radius: 10px;
+    font-weight:bold;
+}
+
+a.recent-city:hover{
+    background: rgb(136, 82, 136) !important;
+}
+
+#recent-destinations{
+    margin-bottom: 14px;
+}
+
+#translate-button{
+    background: rgb(136, 82, 136) !important;
+    border-radius: 10px;
+    font-weight:bold;
+}

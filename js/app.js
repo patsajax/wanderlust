@@ -1,13 +1,15 @@
 var config = {
-    apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
-    authDomain: "wanderlust-52fce.firebaseapp.com",
-    databaseURL: "https://wanderlust-52fce.firebaseio.com",
-    projectId: "wanderlust-52fce",
-    storageBucket: "wanderlust-52fce.appspot.com",
-    messagingSenderId: "77813582408"
-};
+    apiKey: "AIzaSyCSkaFkm-v3v3CtdcLnV-OC1wujd10vjbQ",
+    authDomain: "wanderlust-1522437515707.firebaseapp.com",
+    databaseURL: "https://wanderlust-1522437515707.firebaseio.com",
+    projectId: "wanderlust-1522437515707",
+    storageBucket: "wanderlust-1522437515707.appspot.com",
+    messagingSenderId: "403541142142"
+  };
 firebase.initializeApp(config);
-var database = firebase.database();
+
+var recents = firebase.database().ref("recents/");
+var recentCities = [];
 
 var countryCode = "";
 var countryName = "";
@@ -53,6 +55,32 @@ $(document).ready(function() {
         }
     });
 });
+
+recents.on("value", function(snapshot) {
+    $("#recent-destinations").empty();
+    recentCities = snapshot.val();
+
+    for (var i = 0; i < recentCities.length; i++) {
+        $("<a>")
+            .addClass("waves-effect waves-light btn recent-city gold-text")
+            .text(recentCities[i].city.name)
+            .attr('data-index', i)
+            .appendTo("#recent-destinations");
+    }
+})
+
+$(document).on("click", ".recent-city", function() {
+    selectedCity = recentCities[$(this).attr('data-index')].city;
+    countryName = recentCities[$(this).attr('data-index')].country;
+    countryCurrency = recentCities[$(this).attr('data-index')].currency;
+    countryLanguage = recentCities[$(this).attr('data-index')].language;
+
+    generateCityInfo(selectedCity);
+    showInformationView();  
+    
+    $("#information-back-button").hide();
+    $("#recent-city-back-button").show();
+})
 
 function findCities(north, south, east, west) {
     $.ajax({
@@ -125,43 +153,49 @@ function showMapView() {
     $("#map-view").show();
 
     $("#cities-view").hide();
+    $("#information-view").hide();
 
     $('#vmap').vectorMap('set', 'colors', {[countryCode]: '#f4f3f0'});
 }
 
-function showInformationView() {
-    $("#information-view").show();
-
-    $("#cities-view").hide();
-
-    if (countryLanguage === "en") {
-        $("#user-translation-area").hide()
-    } else {
-        $("#user-translation-area").show()
-    }
-}
-
 $(".city").on("click", function () {
+    selectedCity = cities[$(this).attr("data-city")];
+
+    generateCityInfo(selectedCity);
     showInformationView();
 
-    selectedCity = cities[$(this).attr("data-city")];
+    $("#information-back-button").show();
+    $("#recent-city-back-button").hide();
+
+    var selectedCityInfo = {
+        city: selectedCity,
+        country: countryName,
+        language: countryLanguage,
+        currency: countryCurrency
+    }
+
+    let alreadyRecent = false;
+    recentCities.forEach(e => {
+        if(e.city.name == selectedCity.name)
+            alreadyRecent = true;
+    });
+    
+    if (!alreadyRecent) {
+        recentCities.push(selectedCityInfo);
+        recentCities.shift();
+        recents.set(recentCities);
+    }
+})
+
+function generateCityInfo(selectedCity) {
     var selectedCityName = selectedCity.name;
 
     $("#selected-city").text(selectedCityName);
     $("#country-name").text(countryName);
-    console.log(selectedCityName);
-  
-   // var flightWidget = $("<div>").attr("data-skyscanner-widget", "SearchWidget").attr("data-locale", "en-US").attr("data-origin-geo-lookup", "true").attr("data-destination-name", "'" + selectedCityName + "'");
-   // var skyscannerJs = $("<script>").attr("src", "https://widgets.skyscanner.net/widget-server/js/loader.js async");
-   // $("#flight-widget").append(flightWidget);
-   // $("#skyscannerJs").append(skyscannerJs);
 
-   // $("#flight-widget").attr(data-skyscanner-widget, "SearchWidget").attr(data-locale, "en-US").attr(data-origin-geo-lookup, "true").attr(data-destination-name, "'" + selectedCityName + "'"); 
-   
-  
-  var destinationDiv = $("div").find("[data-element='destination-field']");
-  destinationDiv.attr("id", "toDestination");
-  $("#toDestination :input").val(selectedCityName);
+    var destinationDiv = $("div").find("[data-element='destination-field']");
+    destinationDiv.attr("id", "toDestination");
+    $("#toDestination :input").val(selectedCityName);
 
     var lat1 = selectedCity.lat;
     var lng1 = selectedCity.lng;
@@ -170,11 +204,24 @@ $(".city").on("click", function () {
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
 
     displayCityGreeting(selectedCityName);
-    findAttractions(coordinates);
+    // findAttractions(coordinates);
     convertCurrency();
     populateFlightDestination(selectedCityName);
     translatePhrases();
-})
+}
+
+function showInformationView() {
+    $("#information-view").show();
+
+    $("#map-view").hide();
+    $("#cities-view").hide();
+
+    if (countryLanguage === "en") {
+        $("#user-translation-area").hide()
+    } else {
+        $("#user-translation-area").show()
+    }
+}
 
 function displayCityGreeting(selectedCityName) {
     $("#selected-city").text(selectedCityName);
@@ -202,16 +249,14 @@ function displayAttractions(){
     $("#attraction-1").empty();
     $("#attraction-2").empty();
 
-    for (var i = 0;  i < 3; i++) {
-        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s12");
-        $("#attraction-"+i).append(attractionName);
-    }
-
     for (var i = 0; i < 3; i++) {
         attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
         $("#attraction-"+i).append(attractionImage);
     }
-
+    for (var i = 0;  i < 3; i++) {
+        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s9");
+        $("#attraction-"+i).append(attractionName);
+    }
     for (var i = 0; i < 3; i++) {
         attractionDescription = $("<div>").text(attractionInfo[i].perex).addClass("col s9");
         $("#attraction-"+i).append(attractionDescription);
@@ -252,6 +297,10 @@ function translatePhrases() {
             }).then(function(response) {
                 $("#phrase-" + i).text(response.text[0]);
             })
+        }
+    } else {
+        for (var i = 0; i < helpfulPhrases.length; i++) {
+            $("#phrase-" + i).empty();
         }
     }
 }
@@ -332,23 +381,6 @@ $("#information-back-button").on("click", function () {
     showCitiesView();
 })
 
-// database.ref().push({
-//     country: country,
-//     city: city,
-//     dateAdded: firebase.database.ServerValue.TIMESTAMP
-// });
-
-// // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-
-// // storing the snapshot.val() in a variable for convenience
-// var sv = snapshot.val();
-
-// //console log input
-// console.log(sv.country);
-// console.log(sv.city);
-
-// //handle errors
-// }, function(errorObject) {
-//     console.log("Errors handled: " + errorObject.code);
-// });
+$("#recent-city-back-button").on("click", function () {
+    showMapView();
+})
