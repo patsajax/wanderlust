@@ -169,3 +169,7 @@ h5 {
 .purple-text{
     color:rgb(136, 82, 136) !important;
 }
+
+#recent-city-back-button {
+    display: none;
+}
