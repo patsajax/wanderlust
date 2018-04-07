@@ -1,36 +1,13 @@
-// // Initialize Firebase
-// var config = {
-//     apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
-//     authDomain: "wanderlust-52fce.firebaseapp.com",
-//     databaseURL: "https://wanderlust-52fce.firebaseio.com",
-//     projectId: "wanderlust-52fce",
-//     storageBucket: "wanderlust-52fce.appspot.com",
-//     messagingSenderId: "77813582408"
-// };
-// firebase.initializeApp(config);
-
-// var database = firebase.database();
-
-// database.ref().push({
-//     country: country,
-//     city: city,
-//     dateAdded: firebase.database.ServerValue.TIMESTAMP
-// });
-
-// // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-
-// // storing the snapshot.val() in a variable for convenience
-// var sv = snapshot.val();
-
-// //console log input
-// console.log(sv.country);
-// console.log(sv.city);
-
-// //handle errors
-// }, function(errorObject) {
-//     console.log("Errors handled: " + errorObject.code);
-// });
+var config = {
+    apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
+    authDomain: "wanderlust-52fce.firebaseapp.com",
+    databaseURL: "https://wanderlust-52fce.firebaseio.com",
+    projectId: "wanderlust-52fce",
+    storageBucket: "wanderlust-52fce.appspot.com",
+    messagingSenderId: "77813582408"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
 
 var countryCode = "";
 var countryName = "";
@@ -173,8 +150,9 @@ $(".city").on("click", function () {
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
 
     displayCityGreeting(selectedCityName);
-    // findAttractions(coordinates);
+    findAttractions(coordinates);
     convertCurrency();
+    populateFlightDestination(selectedCityName);
     translatePhrases();
 })
 
@@ -232,6 +210,12 @@ function convertCurrency() {
         var convertedCurrency = response.rates[countryCurrency].toFixed(2);
         $("#currency-conversion").html("1.00 USD <i class='material-icons'>compare_arrows</i> " + convertedCurrency + " " + countryCurrency);
     })
+}
+
+function populateFlightDestination(selectedCityName) {
+    var destinationDiv = $("div").find("[data-element='destination-field']");
+    destinationDiv.attr("id", "toDestination");
+    $("#toDestination :input").val(selectedCityName);
 }
 
 function translatePhrases() {
@@ -327,3 +311,24 @@ function translateUserPhrase(userPhrase) {
 $("#information-back-button").on("click", function () {
     showCitiesView();
 })
+
+// database.ref().push({
+//     country: country,
+//     city: city,
+//     dateAdded: firebase.database.ServerValue.TIMESTAMP
+// });
+
+// // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
+// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+
+// // storing the snapshot.val() in a variable for convenience
+// var sv = snapshot.val();
+
+// //console log input
+// console.log(sv.country);
+// console.log(sv.city);
+
+// //handle errors
+// }, function(errorObject) {
+//     console.log("Errors handled: " + errorObject.code);
+// });
