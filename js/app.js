@@ -1,3 +1,37 @@
+// // Initialize Firebase
+// var config = {
+//     apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
+//     authDomain: "wanderlust-52fce.firebaseapp.com",
+//     databaseURL: "https://wanderlust-52fce.firebaseio.com",
+//     projectId: "wanderlust-52fce",
+//     storageBucket: "wanderlust-52fce.appspot.com",
+//     messagingSenderId: "77813582408"
+// };
+// firebase.initializeApp(config);
+
+// var database = firebase.database();
+
+// database.ref().push({
+//     country: country,
+//     city: city,
+//     dateAdded: firebase.database.ServerValue.TIMESTAMP
+// });
+
+// // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
+// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+
+// // storing the snapshot.val() in a variable for convenience
+// var sv = snapshot.val();
+
+// //console log input
+// console.log(sv.country);
+// console.log(sv.city);
+
+// //handle errors
+// }, function(errorObject) {
+//     console.log("Errors handled: " + errorObject.code);
+// });
+
 var countryCode = "";
 var countryName = "";
 var countryCurrency = "";
@@ -22,18 +56,18 @@ $(document).ready(function() {
                     country: countryCode
                 },
                 method: "GET"
-            }).then(function(response) {
+            }).then(function (response) {
                 countryName = response.geonames[0].countryName;
                 countryCurrency = response.geonames[0].currencyCode;
 
                 var spokenLanguages = response.geonames[0].languages;
-                countryLanguage = spokenLanguages.slice(0,2);
-                
+                countryLanguage = spokenLanguages.slice(0, 2);
+
                 var north = response.geonames[0].north.toFixed(1);
                 var south = response.geonames[0].south.toFixed(1);
                 var east = response.geonames[0].east.toFixed(1);
                 var west = response.geonames[0].west.toFixed(1);
-                
+
                 findCities(north, south, east, west);
             })
         }
@@ -103,7 +137,7 @@ function displayCities() {
     }
 }
 
-$("#cities-back-button").on("click", function() {
+$("#cities-back-button").on("click", function () {
     showMapView();
 })
 
@@ -127,9 +161,9 @@ function showInformationView() {
     }
 }
 
-$(".city").on("click", function(){
+$(".city").on("click", function () {
     showInformationView();
-    
+
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
     var lat1 = selectedCity.lat;
@@ -194,7 +228,7 @@ function convertCurrency() {
             base: "USD"
         },
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
         var convertedCurrency = response.rates[countryCurrency].toFixed(2);
         $("#currency-conversion").html("1.00 USD <i class='material-icons'>compare_arrows</i> " + convertedCurrency + " " + countryCurrency);
     })
@@ -290,6 +324,6 @@ function translateUserPhrase(userPhrase) {
     }
 }
 
-$("#information-back-button").on("click", function() {
+$("#information-back-button").on("click", function () {
     showCitiesView();
 })
