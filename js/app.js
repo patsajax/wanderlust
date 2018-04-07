@@ -24,6 +24,9 @@ $(document).ready(function() {
     $("#vmap").vectorMap({ 
         map: 'world_en',
         enableZoom: false,
+        backgroundColor: '',
+        hoverColor: '#bda24b',
+        selectedColor: '#bda24b',
         onRegionClick: function(event, code, region) {
             countryCode = code;
             $.ajax({
@@ -212,16 +215,16 @@ function displayAttractions(){
     $("#attraction-1").empty();
     $("#attraction-2").empty();
 
-    for (var i = 0;  i < 3; i++) {
-        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s12");
-        $("#attraction-"+i).append(attractionName);
-    }
+
 
     for (var i = 0; i < 3; i++) {
         attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
         $("#attraction-"+i).append(attractionImage);
     }
-
+    for (var i = 0;  i < 3; i++) {
+        attractionName = $("<div>").text(attractionInfo[i].name).addClass("col s9");
+        $("#attraction-"+i).append(attractionName);
+    }
     for (var i = 0; i < 3; i++) {
         attractionDescription = $("<div>").text(attractionInfo[i].perex).addClass("col s9");
         $("#attraction-"+i).append(attractionDescription);
