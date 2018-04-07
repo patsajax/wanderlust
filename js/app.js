@@ -1,11 +1,11 @@
 var config = {
-    apiKey: "AIzaSyAkgRl6n9SDanQ7yu4t5TV2m4MgAxH3Hk0",
-    authDomain: "wanderlust-52fce.firebaseapp.com",
-    databaseURL: "https://wanderlust-52fce.firebaseio.com",
-    projectId: "wanderlust-52fce",
-    storageBucket: "wanderlust-52fce.appspot.com",
-    messagingSenderId: "77813582408"
-};
+    apiKey: "AIzaSyCSkaFkm-v3v3CtdcLnV-OC1wujd10vjbQ",
+    authDomain: "wanderlust-1522437515707.firebaseapp.com",
+    databaseURL: "https://wanderlust-1522437515707.firebaseio.com",
+    projectId: "wanderlust-1522437515707",
+    storageBucket: "wanderlust-1522437515707.appspot.com",
+    messagingSenderId: "403541142142"
+  };
 firebase.initializeApp(config);
 var database = firebase.database();
 
@@ -50,6 +50,21 @@ $(document).ready(function() {
         }
     });
 });
+
+database.ref().on("value", function(snapshot) {
+    if (snapshot.numChildren() > 0) {
+        $("#recent-destinations").show();
+
+        for (var i = 0; i < 3; i++) {
+            snapshot.forEach(function(childSnapshot) {
+                console.log(childSnapshot.key);
+                i++;
+            })
+        }  
+    } else {
+        $("#recent-destinations").hide();
+    }
+})
 
 function findCities(north, south, east, west) {
     $.ajax({
@@ -144,21 +159,19 @@ $(".city").on("click", function () {
     selectedCity = cities[$(this).attr("data-city")];
     var selectedCityName = selectedCity.name;
 
+    database.ref().child(selectedCityName).set({
+        countryName: countryName,
+        countryLanguage: countryLanguage,
+        city: selectedCity
+    })
+
     $("#selected-city").text(selectedCityName);
     $("#country-name").text(countryName);
     console.log(selectedCityName);
   
-   // var flightWidget = $("<div>").attr("data-skyscanner-widget", "SearchWidget").attr("data-locale", "en-US").attr("data-origin-geo-lookup", "true").attr("data-destination-name", "'" + selectedCityName + "'");
-   // var skyscannerJs = $("<script>").attr("src", "https://widgets.skyscanner.net/widget-server/js/loader.js async");
-   // $("#flight-widget").append(flightWidget);
-   // $("#skyscannerJs").append(skyscannerJs);
-
-   // $("#flight-widget").attr(data-skyscanner-widget, "SearchWidget").attr(data-locale, "en-US").attr(data-origin-geo-lookup, "true").attr(data-destination-name, "'" + selectedCityName + "'"); 
-   
-  
-  var destinationDiv = $("div").find("[data-element='destination-field']");
-  destinationDiv.attr("id", "toDestination");
-  $("#toDestination :input").val(selectedCityName);
+    var destinationDiv = $("div").find("[data-element='destination-field']");
+    destinationDiv.attr("id", "toDestination");
+    $("#toDestination :input").val(selectedCityName);
 
     var lat1 = selectedCity.lat;
     var lng1 = selectedCity.lng;
@@ -167,7 +180,7 @@ $(".city").on("click", function () {
     var coordinates = lat1 + "," + lng1 + "," + lat2 + "," + lng2;
 
     displayCityGreeting(selectedCityName);
-    findAttractions(coordinates);
+    // findAttractions(coordinates);
     convertCurrency();
     populateFlightDestination(selectedCityName);
     translatePhrases();
@@ -328,24 +341,3 @@ function translateUserPhrase(userPhrase) {
 $("#information-back-button").on("click", function () {
     showCitiesView();
 })
-
-// database.ref().push({
-//     country: country,
-//     city: city,
-//     dateAdded: firebase.database.ServerValue.TIMESTAMP
-// });
-
-// // Firebase watcher + initial loader + order/limit HINT: .on("child_added"
-// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-
-// // storing the snapshot.val() in a variable for convenience
-// var sv = snapshot.val();
-
-// //console log input
-// console.log(sv.country);
-// console.log(sv.city);
-
-// //handle errors
-// }, function(errorObject) {
-//     console.log("Errors handled: " + errorObject.code);
-// });
