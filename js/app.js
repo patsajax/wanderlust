@@ -24,6 +24,9 @@ $(document).ready(function() {
     $("#vmap").vectorMap({ 
         map: 'world_en',
         enableZoom: false,
+        backgroundColor: '',
+        hoverColor: '#bda24b',
+        selectedColor: '#bda24b',
         onRegionClick: function(event, code, region) {
             countryCode = code;
             $.ajax({
