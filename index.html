@@ -35,10 +35,10 @@
         <div id="cities-view" class="container">
             <div class="row">
                 <div class="card brown darken-1">
-                    <div class="card-content white-text">
-                        <p class="card-title" id="foreign-welcome"></p>
+                    <div class="card-content white-text" id="foreign-welcome">
+                        <p class="card-title" id="foreign-country-name"></p>
                     </div>
-                    <div class="card-content white-text" id="english-welcome">
+                    <div class="card-content white-text">
                         <p class="card-title">Welcome to
                             <span id="english-country-name"></span>
                         </p>
@@ -75,9 +75,9 @@
                 <div id="attractions-area" class="col s12">
                     <ul class="collection with-header">
                         <li class="collection-header">Top Attractions</li>
-                        <li class="collection-item row" id="attraction-0" data-attraction="0"></li>
-                        <li class="collection-item row" id="attraction-1" data-attraction="1"></li>
-                        <li class="collection-item row" id="attraction-2" data-attraction="2"></li>
+                        <li class="collection-item row" id="attraction-0"></li>
+                        <li class="collection-item row" id="attraction-1"></li>
+                        <li class="collection-item row" id="attraction-2"></li>
                     </ul>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div id="translation-area" class="col s6">
-                    <ul class="collection with-header">
+                    <ul class="collection with-header" id="translated-items">
                         <li class="collection-header">Helpful Phrases</li>
                         <li class="collection-item">Hello<br><span id="phrase-0"></span></li>
                         <li class="collection-item">Please<br><span id="phrase-1"></span></li>
@@ -101,10 +101,11 @@
                         <li class="collection-item">How much does this cost?<br><span id="phrase-3"></span></li>
                         <li class="collection-item">Where is the bathroom?<br><span id="phrase-4"></span></li>
                     </ul>
-                    <form>
+                    <form id="user-translation-area">
                         <div class="input-field">
-                            <input type="text" class="validate" id="user-phrase" placeholder="What else do you want to say?">
-                            <label for="user-phrase">Character Limit: 50</label>
+                            <input type="text" id="user-phrase" placeholder="What else do you want to say?">
+                            <label for="user-phrase">Characters Remaining: <span id="characters-remaining">50</span></label>
+                            <input type="submit" value="Submit" id="translate-button">
                         </div>
                     </form>
                 </div>
