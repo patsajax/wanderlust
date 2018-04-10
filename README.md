@@ -18,10 +18,10 @@ This easy to use application helps travelers identify interesting places to visi
 - must not use alerts, confirms or prompts
   - :white_check_mark:
 - must have some sort of repeating element (table, columns, etc.)
-  - :white_check_mark:
+  - :white_check_mark: :loop:
 - must use bootstrap or alternative CSS framework
   - :white_check_mark:(Materialize) ...still sucks:poop:
-- must be deployed (GitHub pages)
+- must be deployed on [GitHub pages](https://patsajax.github.io/wanderlust/)
   - :white_check_mark: :octocat:
 - must have user input validation
   - :white_check_mark:
@@ -33,14 +33,14 @@ This easy to use application helps travelers identify interesting places to visi
 
 
 ## Built using
-- [Materialize](http://materializecss.com/)
+- [Materialize](http://materializecss.com/) ...still regret this decision :persevere:
 
 ## Features
 Some of Wanderlust's great features include;
 - City Recommendations - When you click on a country to explore, the app generates and recommends three cities based on their overall importance, population size, and popularity as a travel destination.
-- Currency Conversion - Wanderlust helps travelers budget for their next vacation by showing how far their dollar will go using regularly updated exchange rates!
+- :dollar <-> :euro: Currency Conversion - Wanderlust helps travelers budget for their next vacation by showing how far their dollar will go using regularly updated exchange rates!
 - Helpful Phrases - The app pre-populates some travel phrases in the destination's official language. Additionally, users are able to utilize the feature to translate their own words and phrases.
-- Book Flights - Through the Skyscanner widget, users can book flights to their destination with just a few clicks. The app tracks the users current location to find the nearest airport and prefills the destination with the city they are exploring. 
+- :airplane:Book Flights - Through the Skyscanner widget, users can book flights to their destination with just a few clicks. The app tracks the users current location to find the nearest airport and prefills the destination with the city they are exploring. 
 - Recent Destinations - Wanderlust saves the most recent destinations that users have explored and displays links to those cities at the bottom of the Homepage. With one click, users can discover a new city or navigate back to one they already learned about. 
 
 ## API Reference
@@ -57,7 +57,7 @@ Yandex API reference documents:
 [https://tech.yandex.com/translate/doc/dg/concepts/About-docpage/](https://tech.yandex.com/translate/doc/dg/concepts/About-docpage/)
 
 ## How to use?
-Welcome to Wanderlust! Click on the country on the map you would like to travel to. You will be greeted to that country in the official language as well as being shown the official country flag. You will then need to decide on one of the top cities in that country you would like to go to. Click on the link for the top city you have decided to visit to obtain additional information to help you plan your trip. Use the currency converter to help you decide how much money you'll need. You can use the Flight finder widget to find flights to that city. You will also be shown some common phrases translated into the official language. If you would like to translate additional phrases, type them into the box and hit the "translate" button to get the translation. If you would like to find information and a different city, you can click the back button to choose another city. If you would like to visit a different country click the back button to return to the map and choose another country. Happy travels! 
+Welcome to Wanderlust! Click the country on the map you would like to travel to. You will be greeted in that country's official language and shown the country's flag. You will then need to pick one of the top cities in that country where you would like to go to. Click on the link for the city to obtain additional information that will help you plan your trip. On the next page sse the currency converter to help you decide how much money you'll need. You can use the flight finder widget to  search for flights to that city from your current location. Additionally, the app will show you some common phrases translated into the official language of your destination. If you would like to translate additional phrases, type them into the box and hit the "translate" button to get the translation. In order to find information on a different city, you can click the back button to choose another city. If you would like to visit a different country click the back button to return to the map and choose another country. Happy travels! :bllush:
 
 ## Credits
 The application was created by a team of wonderful coders!
