@@ -1,4 +1,12 @@
 /* Overwriting theme styling */
+/* Google fonts:
+font-family: 'Kaushan Script', cursive;
+font-family: 'Merienda One', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Knewave', cursive;
+font-family: 'Diplomata SC', cursive;
+font-family: 'Open Sans', sans-serif;
+*/
 
 p {
     margin-top: 0px !important;
@@ -18,11 +26,17 @@ p {
 }
 
 .page-footer {
-    margin-top: 14px !important;
+    background-image: url("./../img/purple cloud - Copy.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
+}
+
+.collection-item {
+    padding-left: 20px !important;
 }
 
 /* Our styling */
 
+/* General elements */
 body {
     display: flex;
     min-height: 100vh;
@@ -31,27 +45,50 @@ body {
 
 header {
     padding: 20px;
-    margin-bottom: 14px;
+    background-image: url("./../img/purple cloud - Copy.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
 }
 
 main {
     flex: 1 0 auto;
+    background-color: #cdcdc0;
+}
+
+h5 {
+    font-size: 60px;
+    font-style: oblique;
 }
  
 .header {
     margin-top: 0px;
     font-style: oblique;
+    font-family: 'Rock Salt', cursive;
 }
 
 .subheader {
-    font-style: oblique;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 200%;
+}
+
+/* Map view */
+#map-view {
+    height: 100%;
+    background-image: url("./../img/purple cloud.jpg") !important;
+    background-repeat: repeat-x repeat-y !important;
 }
 
 .map-title {
     padding: 20px;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-family: 'Merienda One', cursive;
 }
 
+#vmap {
+    width: 100%;
+    height: 500px;
+}
+
+/* Cities view */
 #cities-view {
     display: none;
     text-align: center;
@@ -61,29 +98,145 @@ main {
     padding-left: 0px;
 }
 
-#cities-area {
-    padding-right: 0px;
-}
-
 #country-flag {
     width: 100%;
 }
 
-#flight-area {
+#cities-area {
+    padding-right: 0px;
+}
+
+.city {
+    cursor: pointer;
+}
+
+/* Information view */
+#information-view {
     display: none;
 }
- 
-h5 {
-    font-size: 60px;
-    font-style: oblique;
+
+#currency-area {
+    text-align: center !important;
 }
 
-#map-view {
-    height: 100%;
-    background: #a5bfdd;
+.flight-area {
+    padding-left: 20px;
+    padding-right: 20px;
+    background: white;
+    margin-bottom:  10px !important;
 }
 
-#vmap {
-    width: 100%;
-    height: 500px;
+.contact-title-text{
+    font-family: 'Rock Salt', cursive;
+    font-size:2.5em;
+}
+
+.contact-sub-text{
+    font-family: 'Merienda One', cursive;
+    font-size:1.3em;
+}
+
+.contact-name:hover{
+    color: rgb(136, 82, 136) !important;
+}
+
+.btn-style{
+    background-image:url("./../img/purple cloud.jpg")
+}
+
+.gold-style{
+    background-image:url("./../img/purple cloud - Copy.jpg")
+}
+
+.purple-style{
+    background-image:url("./../img/purple cloud.jpg")
+}
+
+.rock-salt{
+    font-family: 'Rock Salt', cursive !important;
+    font-style: oblique !important;
+    font-size: 2em !important;
+}
+
+.kaushan-script{
+    font-family: 'Kaushan Script', cursive !important;
+    font-size:2em !important;
+}
+
+.merienda-one{
+    font-family: 'Merienda One', cursive !important;
+    font-size:1.5em !important;
+}
+
+.opensans{
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.5em !important;
+}
+
+.knewave{
+    font-family: 'Knewave', cursive;
+    font-size:1.3em !important;
+}
+
+.gold-text{
+    color:#bda24b !important;
+}
+
+.purple-text{
+    color:rgb(136, 82, 136) !important;
+}
+
+.flight-area{
+    background: white;
+}
+
+#recent-city-back-button {
+    display: none;
+}
+
+.recent-city {
+    margin-left:10px;
+    margin-right:10px;
+    background: white;
+    border-radius: 10px;
+    font-weight:bold;
+}
+
+a.recent-city:hover{
+    background: rgb(136, 82, 136) !important;
+}
+
+#recent-destinations{
+    margin-bottom: 25px;
+}
+
+#translate-button{
+    background: rgb(136, 82, 136) !important;
+    border-radius: 10px;
+    font-weight:bold;
+}
+
+#translate-button:hover {
+    background: rgb(133, 38, 133) !important;
+}
+
+.teamname:hover{
+    color: white !important;
+}
+
+.view-title{
+    margin-bottom: 7px !important;
+}
+
+.page-3-title-margin{
+    margin-bottom: 7px !important;
+}
+
+.page-3-attraction-margin{
+    margin-bottom: 0px !important;
+}
+
+.helpful-phrases-style{
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 1em !important;
 }

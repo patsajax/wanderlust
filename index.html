@@ -1,110 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>wanderlust</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>wanderlust</title>
 
-        <!-- CSS  -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- CSS  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <link rel="stylesheet" href="./css/jqvmap.css">
+    <link rel="stylesheet" href="./css/jqvmap.css">
 
-        <link rel="stylesheet" href="./css/style.css">
-    </head>
+    <link rel="stylesheet" href="./css/style.css">
 
-    <body>
-        <!-- Header -->
-        <header class="brown white-text">
-            <h1 class="header light center">wanderlust</h1>
-            <h4 class="subheader light center">your one-stop shop for all the information on your next travel destination</h4>
-        </header>
+    <!-- Firebase reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 
-        <main>
-            <!-- Map view -->
-            <div class="center" id="map-view">
-                <p class="map-title white-text">Which country is calling to you?</p>
-                <div class="center" id="map-area">
-                    <div id="vmap"></div>
-                </div>
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" href="https://trell.co/assets/images/branding/favicon-green.png" type="image/x-icon">    
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Diplomata+SC|Kaushan+Script|Knewave|Merienda+One|Open+Sans|Rock+Salt" rel="stylesheet">
+  
+    <!-- Font Awesome Icon Link -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="white-text">
+        <h1 class="header light center"><i class="fas fa-globe fa-spin"></i>  Wanderlust</h1>
+        <h4 class="subheader light center">Your one-stop shop for all the information on your next travel destination!</h4>
+    </header>
+
+    <main>
+        <!-- Map view -->
+        <div class="center" id="map-view">
+            <p class="map-title white-text">Which country is calling to you?</p>
+            <div class="center" id="map-area">
+                <div id="vmap"></div>
             </div>
+            <div id="recent-destinations">
+                <p class="white-text merienda-one">Popular Destinations</p>
+            </div>
+        </div>
 
-            <!-- Cities view -->
-            <div id="cities-view" class="container">
-                <div class="row">  
-                    <div class="card brown darken-1">
-                        <div class="card-content white-text">
-                            <p class="card-title" id="foreign-welcome"></p>
-                        </div>
-                        <div class="card-content white-text" id="english-welcome">
-                            <p class="card-title">Welcome to <span id="english-country-name"></span></p>
-                        </div>
+        <!-- Cities view -->
+        <div id="cities-view" class="container">
+            <div class="row view-title">
+                <div class="card">
+                    <div class="card-content white-text purple-style" id="foreign-welcome">
+                        <p class="card-title darken-1 rock-salt" id="foreign-country-name"></p>
+                    </div>
+                    <div class="card-content white-text purple-style" id="english-welcome">
+                        <p class="card-title darken-1 rock-salt">Welcome to
+                            <span id="english-country-name"></span>
+                        </p>
                     </div>
                 </div>
-                <div class="row valign-wrapper">
-                    <div id="flag-area" class="col s7">
-                        <img id="country-flag">
-                    </div>    
-                    <div id="cities-area" class="col s5">
-                        <div class="card-stacked">   
-                            <p class="card-title">Our Top 3 City Recommendations</p>
-                            <div class="collection">
-                                <a class="collection-item" id="city-0"></a>
-                                <a class="collection-item" id="city-1"></a>
-                                <a class="collection-item" id="city-2"></a>
+            </div>
+            <div class="row valign-wrapper">
+                <div id="flag-area" class="col s7">
+                    <img id="country-flag">
+                </div> 
+                <div id="cities-area" class="col s5">
+                    <ul class="collection with-header white-text">   
+                        <li class="collection-header purple-style kaushan-script">Recommended Cities</li>
+                        <a class="collection-item city purple-text merienda-one" id="city-0" data-city="0"></a>
+                        <a class="collection-item city purple-text merienda-one" id="city-1" data-city="1"></a>
+                        <a class="collection-item city purple-text merienda-one" id="city-2" data-city="2"></a>
+                    </ul>
+                </div>
+            </div>
+            <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
+                <i class="material-icons">arrow_back</i>
+            </a>
+        </div>
+
+        <!-- City information view -->
+        <div id="information-view" class="container">
+            <div class="row center view-title">
+                <div class="card darken-1 purple-style rock-salt page-3-title-margin">
+                    <div class="card-content white-text">
+                        <p class="card-title"><span id="selected-city"></span>, <span id="country-name"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row page-3-attraction-margin">
+                <div id="attractions-area" class="col s12">
+                    <ul class="collection with-header">
+                        <li class="collection-header purple-style center-align kaushan-script white-text">Top Attractions</li>
+                        <li class="collection-item row" id="attraction-0">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
+                        <li class="collection-item row" id="attraction-1">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
+                        <li class="collection-item row" id="attraction-2">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col s6" id="currency-area">
+                            <ul class="collection with-header">
+                                <li class="collection-header center-align kaushan-script purple-style white-text">Currency</li>    
+                                <li class="collection-item center-align opensans" id="currency-conversion"></li>
+                            </ul>
+                            <div class="section collection flight-area">
+                                <div class="collection-header center-align kaushan-script purple-text">Let's Go!</div><br>
+                                <div id="flight-widget" data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-locale="en-US">Flight Widget</div>                    </div>
+                        </div>
+
+                <div id="translation-area" class="col s6">
+                    <ul class="collection with-header" id="translated-items">
+                        <li class="collection-header purple-style center-align kaushan-script white-text">Helpful Phrases</li>
+                        <li class="collection-item helpful-phrases-style"><b>Hello</b><br><span id="phrase-0"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Please</b><br><span id="phrase-1"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Thank you</b><br><span id="phrase-2"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>How much does this cost?</b><br><span id="phrase-3"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Where is the bathroom?</b><br><span id="phrase-4"></span></li>
+                        <li class="collection-item" id="user-translation-area">
+                          <form>
+                            <div class="input-field">
+                                <input type="text" id="user-phrase" placeholder="What else do you want to say?">
+                                <label for="user-phrase">Characters Remaining: <span id="characters-remaining">50</span></label>
+                                <input type="submit" value="Submit" class="white-text btn" id="translate-button">
                             </div>
-                        </div>
-                    </div>          
-                </div>
-                <a id="cities-back-button" class="btn-floating btn-large waves-effect waves-light cyan left"><i class="material-icons">arrow_back</i></a>
-            </div>
-
-            <!-- City information view -->
-            <div id="information-view">
-                <div class="container" id="flight-area">
-                    <div class="section">
-                        <div data-skyscanner-widget="SearchWidget" data-locale="en-US"></div>
-                    </div>
+                          </form>
+                       </li>
+                    </ul>
                 </div>
             </div>
-        </main>
+            <a id="information-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <a id="recent-city-back-button" class="btn-floating btn-large waves-effect waves-light btn-style left">
+                <i class="material-icons">arrow_back</i>
+            </a>
+        </div>
+    </main>
 
-        <!-- Footer -->
-        <footer class="page-footer brown">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">about us</h5>
-                        <p class="grey-text text-lighten-4">we are a team of coding boot camp students working on this project like it's our full time job.</p>
-                    </div>
-                    <div class="col l6 s12">
-                        <h5 class="white-text">meet the team</h5>
-                        <ul>
-                            <li><a class="white-text" href="https://github.com/carladdg" target="_blank">carla garcia</a></li>
-                            <li><a class="white-text" href="https://github.com/cerisemiller" target="_blank">cerise miller</a></li>
-                            <li><a class="white-text" href="https://github.com/heguanelvis" target="_blank">guan he</a></li>
-                            <li><a class="white-text" href="https://github.com/JasonOHiggins" target="_blank">jason o'higgins</a></li>
-                        </ul>
-                    </div>
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12 push-l1">
+                    <h5 class="white-text contact-title-text">About Us</h5>
+                    <p class="grey-text text-lighten-4 contact-sub-text">We are a team of coding boot camp students working on this project like it's our full time job.</p>
+                </div>
+                <div class="col l6 s12 push-l1">
+                    <h5 class="white-text contact-title-text">Meet the Team</h5>
+                    <ul class="contact-sub-text">
+                        <li>
+                            <a class="white-text contact-name" href="https://github.com/carladdg" target="_blank">Carla Garcia</a>
+                        </li>
+                        <li>
+                            <a class="white-text contact-name" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a>
+                        </li>
+                        <li>
+                            <a class="white-text contact-name" href="https://github.com/heguanelvis" target="_blank">Guan He</a>
+                        </li>
+                        <li>
+                            <a class="white-text contact-name" href="https://github.com/JasonOHiggins" target="_blank">Jason O'Higgins</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    made by <a class="brown-text text-lighten-3" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
-                </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container center-align">
+                Made by
+                <a class="brown-text text-lighten-3 center-align teamname" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>  
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
-        <script src="./js/jquery.vmap.js"></script>
-        <script src="./js/jquery.vmap.world.js"></script>
-        <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+    <script src="./js/jquery.vmap.js"></script>
+    <script src="./js/jquery.vmap.world.js"></script>
+   <!-- <script id="skyscannerJs"></script> -->
 
-        <script src="./js/app.js"></script>
-    </body>
+    <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+
+    <script src="./js/app.js"></script>
+</body>
+
 </html>
