@@ -216,6 +216,8 @@ function showInformationView() {
     $("#map-view").hide();
     $("#cities-view").hide();
 
+    $("#user-phrase-area").remove();
+
     if (countryLanguage === "en") {
         $("#user-translation-area").hide()
     } else {
