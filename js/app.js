@@ -249,24 +249,24 @@ function displayAttractions(){
     $("#attraction-1").empty();
     $("#attraction-2").empty();
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < attractionInfo.length; i++) {
         attractionImage = $("<img>").attr("src", attractionInfo[i].thumbnail_url).addClass("col s3");
         $("#attraction-"+i).append(attractionImage);
     }
-    for (var i = 0;  i < 3; i++) {
-        attractionName = $("<div>").html(attractionInfo[i].name + "<br>" + "<br>").addClass("col s9 gold-text center-align merienda-one");
+    for (var i = 0;  i < attractionInfo.length; i++) {
+        attractionName = $("<div>").html(attractionInfo[i].name).addClass("col s9 gold-text merienda-one");
         $("#attraction-"+i).append(attractionName);
     }
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < attractionInfo.length; i++) {
         attractionMarker = $("<div>").html(attractionInfo[i].marker + "<br>" + "<br>").addClass("col s9 knewave purple-text");
         $("#attraction-"+i).append(attractionMarker);
     }
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < attractionInfo.length; i++) {
         attractionDescription = $("<div>").html(attractionInfo[i].perex + "<br>" + "<br>").addClass("col s9 opensans");
         $("#attraction-"+i).append(attractionDescription);
     }
-    for (var i = 0; i < 3; i++) {
-        attractionMapLink = $("<a>").attr("href", attractionInfo[i].url).attr("target", "_blank").addClass("col s9 opensans").text("Click Here to Check Its Location!");
+    for (var i = 0; i < attractionInfo.length; i++) {
+        attractionMapLink = $("<a>").attr("href", attractionInfo[i].url).attr("target", "_blank").addClass("col s9 opensans").text("Location").css("color","#4db6ac");
         $("#attraction-"+i).append(attractionMapLink);
     }
 
@@ -324,7 +324,6 @@ $("#user-phrase").keypress(function(event) {
 
     if (charactersRemaining < 0) {
         $("#user-phrase").addClass("invalid");
-        $("#translate-button").addClass("disabled");
     }
 })
 
@@ -341,7 +340,6 @@ $("#user-phrase").keydown(function(event) {
 
         if (charactersRemaining >= 0) {
             $("#user-phrase").removeClass("invalid");
-            $("#translate-button").removeClass("disabled");
         }
     }
 })
@@ -379,7 +377,7 @@ function translateUserPhrase(userPhrase) {
         }).then(function(response) {
             $("#user-phrase-area").remove();
     
-            var userPhraseArea = $("<li>").addClass("collection-item").attr("id", "user-phrase-area").text(userPhrase).appendTo("#translated-items");
+            var userPhraseArea = $("<li>").addClass("collection-item grey lighten-2").attr("id", "user-phrase-area").html("<b>" + userPhrase + "<b>").appendTo("#translated-items");
             $("<br>").appendTo(userPhraseArea);
             $("<span>").text(response.text[0]).appendTo(userPhraseArea);
         })

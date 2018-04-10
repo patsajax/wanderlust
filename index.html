@@ -49,10 +49,10 @@
 
         <!-- Cities view -->
         <div id="cities-view" class="container">
-            <div class="row">
+            <div class="row view-title">
                 <div class="card">
-                    <div class="card-content white-text purple-style">
-                        <p class="card-title" id="foreign-welcome"></p>
+                    <div class="card-content white-text purple-style" id="foreign-welcome">
+                        <p class="card-title"></p>
                     </div>
                     <div class="card-content white-text purple-style" id="english-welcome">
                         <p class="card-title darken-1 rock-salt">Welcome to
@@ -81,20 +81,29 @@
 
         <!-- City information view -->
         <div id="information-view" class="container">
-            <div class="row center">
-                <div class="card darken-1 purple-style rock-salt">
+            <div class="row center view-title">
+                <div class="card darken-1 purple-style rock-salt page-3-title-margin">
                     <div class="card-content white-text">
                         <p class="card-title"><span id="selected-city"></span>, <span id="country-name"></span></p>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row page-3-attraction-margin">
                 <div id="attractions-area" class="col s12">
                     <ul class="collection with-header">
                         <li class="collection-header purple-style center-align kaushan-script white-text">Top Attractions</li>
-                        <li class="collection-item row" id="attraction-0"></li>
-                        <li class="collection-item row" id="attraction-1"></li>
-                        <li class="collection-item row" id="attraction-2"></li>
+                        <li class="collection-item row" id="attraction-0">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
+                        <li class="collection-item row" id="attraction-1">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
+                        <li class="collection-item row" id="attraction-2">
+                            <div class="col s3"></div>
+                            <div class="col s9"></div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -102,7 +111,7 @@
                     <div class="col s6" id="currency-area">
                             <ul class="collection with-header">
                                 <li class="collection-header center-align kaushan-script purple-style white-text">Currency</li>    
-                                <li class="collection-item center-align" id="currency-conversion"></li>
+                                <li class="collection-item center-align opensans" id="currency-conversion"></li>
                             </ul>
                             <div class="section collection flight-area">
                                 <div class="collection-header center-align kaushan-script purple-text">Let's Go!</div><br>
@@ -112,11 +121,11 @@
                 <div id="translation-area" class="col s6">
                     <ul class="collection with-header" id="translated-items">
                         <li class="collection-header purple-style center-align kaushan-script white-text">Helpful Phrases</li>
-                        <li class="collection-item">Hello<br><span id="phrase-0"></span></li>
-                        <li class="collection-item">Please<br><span id="phrase-1"></span></li>
-                        <li class="collection-item">Thank you<br><span id="phrase-2"></span></li>
-                        <li class="collection-item">How much does this cost?<br><span id="phrase-3"></span></li>
-                        <li class="collection-item">Where is the bathroom?<br><span id="phrase-4"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Hello</b><br><span id="phrase-0"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Please</b><br><span id="phrase-1"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Thank you</b><br><span id="phrase-2"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>How much does this cost?</b><br><span id="phrase-3"></span></li>
+                        <li class="collection-item helpful-phrases-style"><b>Where is the bathroom?</b><br><span id="phrase-4"></span></li>
                         <li class="collection-item">
                           <form id="user-translation-area">
                             <div class="input-field">
@@ -150,16 +159,16 @@
                     <h5 class="white-text contact-title-text">Meet the Team</h5>
                     <ul class="contact-sub-text">
                         <li>
-                            <a class="white-text" href="https://github.com/carladdg" target="_blank">Carla Garcia</a>
+                            <a class="white-text contact-name" href="https://github.com/carladdg" target="_blank">Carla Garcia</a>
                         </li>
                         <li>
-                            <a class="white-text" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a>
+                            <a class="white-text contact-name" href="https://github.com/cerisemiller" target="_blank">Cerise Miller</a>
                         </li>
                         <li>
-                            <a class="white-text" href="https://github.com/heguanelvis" target="_blank">Guan He</a>
+                            <a class="white-text contact-name" href="https://github.com/heguanelvis" target="_blank">Guan He</a>
                         </li>
                         <li>
-                            <a class="white-text" href="https://github.com/JasonOHiggins" target="_blank">Jason O'Higgins</a>
+                            <a class="white-text contact-name" href="https://github.com/JasonOHiggins" target="_blank">Jason O'Higgins</a>
                         </li>
                     </ul>
                 </div>
@@ -168,7 +177,7 @@
         <div class="footer-copyright">
             <div class="container center-align">
                 Made by
-                <a class="brown-text text-lighten-3 center-align" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
+                <a class="brown-text text-lighten-3 center-align teamname" href="https://github.com/patsajax/wanderlust/tree/master">The Pat $.ajax 2018</a>
             </div>
         </div>
     </footer>
