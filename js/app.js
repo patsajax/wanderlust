@@ -377,7 +377,7 @@ function translateUserPhrase(userPhrase) {
         }).then(function(response) {
             $("#user-phrase-area").remove();
     
-            var userPhraseArea = $("<li>").addClass("collection-item grey lighten-2").attr("id", "user-phrase-area").html("<b>" + userPhrase + "<b>").appendTo("#translated-items");
+            var userPhraseArea = $("<li>").addClass("collection-item grey lighten-2").attr("id", "user-phrase-area").html("<b>" + userPhrase + "<b>").insertBefore("#user-translation-area");
             $("<br>").appendTo(userPhraseArea);
             $("<span>").text(response.text[0]).appendTo(userPhraseArea);
         })
