@@ -3,37 +3,32 @@ One-stop-shop for information on the next city you want to visit! Wanderlust wil
 
 This easy to use application helps travelers identify interesting places to visit once they've chosen a country to explore. The platform not only recommends cities, but also provides a short list of some of the best nearby attractions. 
 
-//This easy to use platform allows users to find the top cities in each country, best attractions in / near each city, a //translation of some commonly used phrases in the official language of each country, along with a place to type a unique //phrase to be translated as well as a local currency converter updated hourly to ensure the most up to date exchange rate //information. 
-
-## Why does this app exist???
+## Project Requirements
 *Wanderlust* was built by a team of coders enrolled in Northwestern University's Coding Bootcamp. The team was instructed to build a web application that met the following requirements;
 - must use at least 2 apis
-  - (GeoNames :globe_with_meridians: , Open Exchange Rates :yen: , Sygic :earth_africa, Yandex :memo:)
+  - :white_check_mark: (GeoNames :globe_with_meridians: , Open Exchange Rates :yen: , Sygic :earth_africa:, Yandex :memo:)
 - must use ajax to pull data
-   
+   - :white_check_mark:
 - must use one new library or technology not previously discussed in class
-  - (Materialize)
+  - :white_check_mark: (Materialize) :pouting_cat:
 - must have a polished frontend/UI
-  -
+  - :white_check_mark:
 - must meet good quality coding standards
-  -
+  - :white_check_mark: Only the best :wink:
 - must not use alerts, confirms or prompts
-  -
+  - :white_check_mark:
 - must have some sort of repeating element (table, columns, etc.)
-  -
+  - :white_check_mark:
 - must use bootstrap or alternative CSS framework
-  - (Materialize)
+  - :white_check_mark:(Materialize) ...still sucks:poop:
 - must be deployed (GitHub pages)
-  -
+  - :white_check_mark: :octocat:
 - must have user input validation
-  -
+  - :white_check_mark:
 - utilize Firebase for persistent data storage
-  -
+  - :white_check_mark: :fire:
 - mobile responsive
-  -
-
-
-//This project is in response to personal travel experiences and some of the things we would like to see in a travel site. The //motivation is to provide a user with one easy to use application to find all the relvant travel information they would need //to get started planning and being prepared for their next trip.  
+  - :white_check_mark: :iphone:
 
 
 
@@ -67,13 +62,13 @@ Welcome to Wanderlust! Click on the country on the map you would like to travel 
 ## Credits
 The application was created by a team of wonderful coders!
 
-[Carla Garcia](https://github.com/carladdg)
+:ghost: [Carla Garcia](https://github.com/carladdg)
 
-[Cerise Miller](https://github.com/cerisemiller)
+:beer: [Cerise Miller](https://github.com/cerisemiller)
 
-[Guan He](https://github.com/heguanelvis)
+:alien: [Guan He](https://github.com/heguanelvis)
 
-[Jason O'Higgins](https://github.com/JasonOHiggins)
+:four_leaf_clover: [Jason O'Higgins](https://github.com/JasonOHiggins)
 
 ## License
 [The Pat $.ajax 2018 ©](https://github.com/patsajax/wanderlust/tree/master)
